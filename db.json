@@ -1,0 +1,102 @@
+{
+  "companies": [
+    {
+      "id": "7401",
+      "name": "Wawa",
+      "location": "Philadelphia",
+      "position": "Software Engineer",
+      "priority": true,
+      "applied": true
+    },
+    {
+      "id": "78c2",
+      "name": "Penn",
+      "location": "Philadelphia, PA",
+      "position": "Nurse",
+      "description": "blah blah",
+      "priority": false,
+      "applied": false
+    },
+    {
+      "id": "8ce7",
+      "name": "Home Depot",
+      "location": "Atlanta, GA",
+      "position": "Software Engineer",
+      "description": "Full time SWE position. 2 years of experience required.",
+      "priority": true,
+      "applied": true
+    },
+    {
+      "id": "a93c",
+      "name": "Nalgene",
+      "location": "Philadelphia, PA",
+      "position": "Software Engineer II",
+      "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+      "priority": true,
+      "applied": false
+    },
+    {
+      "id": "f0ab",
+      "name": "Savers",
+      "location": "Danvers, MA",
+      "position": "Software Engineer",
+      "link": "https://savers.org",
+      "description": "The input value is automatically validated to ensure that it's either empty or a properly-formatted URL before the form can be submitted. The :valid and :invalid CSS pseudo-classes are automatically applied as appropriate to visually denote whether the current value of the field is a valid URL or not.",
+      "priority": true,
+      "applied": false
+    }
+  ],
+  "contacts": [
+    {
+      "id": "82be",
+      "firstName": "Amaury",
+      "lastName": "Silverio",
+      "jobTitle": "Software Engineer",
+      "company": "Resilient Coders",
+      "location": "Philadelphia, PA",
+      "email": "amaurycodes@gmail.com",
+      "phone": "978-744-9760",
+      "linkedIn": "https://www.linkedin.com/in/amaury-silverio/",
+      "twitter": "https://x.com/AmauryCodes",
+      "github": "https://github.com/AmaurySilverio",
+      "notes": "Amaury is a great contact to talk about React and CSS.",
+      "priority": true
+    },
+    {
+      "id": "7023",
+      "firstName": "Joe",
+      "lastName": "Shmo",
+      "jobTitle": "Shmoozer",
+      "company": "Boobie inspector",
+      "location": "ur moms house",
+      "email": "amaury@google.com",
+      "phone": "978-543-9090",
+      "chat": "2025-02-12",
+      "linkedIn": "https://www.linkedin.com/in/amaury-silverio/",
+      "twitter": "https://x.com/AmauryCodes",
+      "github": "https://github.com/AmaurySilverio/",
+      "notes": "blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah",
+      "priority": true
+    }
+  ],
+  "documents": [
+    {
+      "id": "de7d",
+      "typeOfDocument": "resume",
+      "document": "https://eef",
+      "title": "test1"
+    },
+    {
+      "id": "525a",
+      "typeOfDocument": "portfolio",
+      "document": "https://eef",
+      "title": "test4"
+    },
+    {
+      "id": "3de0",
+      "typeOfDocument": "resume",
+      "document": "https://eef",
+      "title": "test5"
+    }
+  ]
+}
