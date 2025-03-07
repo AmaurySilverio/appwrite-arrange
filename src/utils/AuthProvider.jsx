@@ -1,12 +1,24 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { account } from "../../appwriteConfig";
 
-const AuthContext = createContext(null);
+const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const loginUser = (userInfo) => {};
+  const loginUser = async (userInfo) => {
+    setIsLoading(true);
+    try {
+      let response = await account.createEmailPasswordSession(
+        userInfo.email,
+        userInfo.password
+      );
+      console.log("SESSION:", response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const logOutUser = () => {};
   const registerUser = (userInfo) => {};
   const checkUserStatus = () => {};
@@ -20,13 +32,15 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      setUser(true);
+      setUser(null);
       setIsLoading(false);
     }, 1000);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, isLoading }}>
+    <AuthContext.Provider
+      value={{ user, loginUser, logOutUser, registerUser, isLoading }}
+    >
       {children}
     </AuthContext.Provider>
   );

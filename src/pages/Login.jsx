@@ -1,6 +1,6 @@
 import Button from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useAuth } from "../utils/AuthProvider";
 import Navbar from "../components/Navbar";
 
@@ -17,22 +17,23 @@ const Login = () => {
     }
   }, [user, navigate]);
 
-  const [emailInputValue, setEmailInputValue] = useState("");
-  const [passwordInputValue, setPasswordInputValue] = useState("");
+  // const [emailInputValue, setEmailInputValue] = useState("");
+  // const [passwordInputValue, setPasswordInputValue] = useState("");
 
-  const onEmailInputChange = (e) => {
-    setEmailInputValue(e.target.value);
-  };
-  const onPasswordInputChange = (e) => {
-    setPasswordInputValue(e.target.value);
-  };
+  // const onEmailInputChange = (e) => {
+  //   setEmailInputValue(e.target.value);
+  // };
+  // const onPasswordInputChange = (e) => {
+  //   setPasswordInputValue(e.target.value);
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     const email = loginForm.current.email.value;
     const password = loginForm.current.password.value;
 
     const userInfo = { email, password };
+    console.log(userInfo);
     loginUser(userInfo);
   };
   return (
@@ -48,8 +49,8 @@ const Login = () => {
                 id="email"
                 placeholder="john@gmail.com"
                 name="email"
-                value={emailInputValue}
-                onChange={onEmailInputChange}
+                // value={emailInputValue}
+                // onChange={onEmailInputChange}
                 required
               />
             </div>
@@ -60,8 +61,8 @@ const Login = () => {
                 id="password"
                 placeholder="********"
                 name="password"
-                value={passwordInputValue}
-                onChange={onPasswordInputChange}
+                // value={passwordInputValue}
+                // onChange={onPasswordInputChange}
                 minLength="8"
                 required
               />
