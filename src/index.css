@@ -508,9 +508,6 @@ margin: 0;
   gap: 15px;
   padding: 40px 40px 30px 40px;
 }
-/* .company-details-wrapper .details-toggles:nth-child(3):hover{
-
-} */
 .details-container{
   display: flex;
   justify-content: space-between;
@@ -564,6 +561,27 @@ visibility: visible;
   display: flex;
   gap: 10px;
   justify-content: center;
+}
+.icon-border.applied:hover .applied-hover{
+  opacity: 1;
+  visibility: visible;
+}
+.applied-hover{
+  position: absolute;
+  top: 65px;
+  right: 17px;
+  background-color: lightgray;
+  padding: 0.4rem;
+  border-radius: 0.2rem;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.1s ease-in-out;
+  color: black;
+  font-size: 13px;
+}
+.applied-hover p{
+  margin: 0;
 }
 /* CONFIRM DIALOG */
 .confirm-dialog{
@@ -760,13 +778,17 @@ visibility: visible;
 /* PROFILE PAGE */
 .profile-header-container{
   display: flex;
-  margin: 0 auto;
-  width: 84%;
-  padding: 2rem;
+  /* margin: 0 auto; */
+  /* width: 84%; */
+  padding: 2rem 6rem;
+  background-color: rgba(60, 178, 40, 0.57);
+  z-index: -1;
+  position: relative;
+  /* margin: 2rem 0; */
 }
 .documents-container{
   width: 90%;
-  margin: 0 auto;
+  margin: 1rem auto;
 }
 .documents-container ul{
   padding: 0;

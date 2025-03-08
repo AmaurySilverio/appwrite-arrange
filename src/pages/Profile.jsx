@@ -5,6 +5,7 @@ import ConfirmNotification from "../components/ConfirmNotification";
 import { useState, useEffect } from "react";
 import DocumentsField from "../components/DocumentsField";
 import DocumentForm from "../components/DocumentForm";
+import { useAuth } from "../utils/AuthProvider";
 
 const Profile = () => {
   const [modal, setModal] = useState(false);
@@ -18,9 +19,13 @@ const Profile = () => {
   const [typeOfDocument, setTypeOfDocument] = useState("resume");
   const [selectedDocuments, setSelectedDocuments] = useState([]);
 
+  const { user } = useAuth();
+
   useEffect(() => {
+    const user$id = user.$id;
+    console.log(user$id.toString());
     documentService
-      .getAll()
+      .getAll(user$id)
       .then((initialDocuments) => {
         setDocuments(initialDocuments);
       })
@@ -58,12 +63,14 @@ const Profile = () => {
   };
 
   const addDocument = (e) => {
+    const user$id = user.$id;
     e.preventDefault();
     setDocumentFormModal(false);
     const documentObject = {
       typeOfDocument: typeOfDocument.trim(),
       document: document.trim(),
       title: title.trim(),
+      createdBy: user$id,
     };
     console.log(documentObject);
     if (
@@ -146,7 +153,7 @@ const Profile = () => {
         <p>
           Store and organize all your job-specific resumes, cover letters, and
           portfolios in one place. Easily upload your Google Docs links and
-          manage them with ease—view, upload, or delete them below.
+          manage them with ease — view, upload, or delete them below.
         </p>
       </div>
       {documentFormModal && (

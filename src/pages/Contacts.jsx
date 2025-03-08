@@ -7,6 +7,7 @@ import Navbar from "../components/Navbar";
 import ContactForm from "../components/ContactForm";
 import ContactsField from "../components/ContactsField";
 import ContactDetails from "../components/ContactDetails";
+import { useAuth } from "../utils/AuthProvider";
 
 const Contacts = () => {
   const [modal, setModal] = useState(false);
@@ -34,9 +35,12 @@ const Contacts = () => {
   const [priority, setPriority] = useState("no");
   const [contactFormModal, setContactFormModal] = useState(false);
 
+  const { user } = useAuth();
+
   useEffect(() => {
+    const user$id = user.$id;
     contactService
-      .getAll()
+      .getAll(user$id)
       .then((initialContacts) => {
         setContacts(initialContacts);
       })
@@ -54,6 +58,7 @@ const Contacts = () => {
   }, []);
 
   const addContact = (event) => {
+    const user$id = user.$id;
     event.preventDefault();
     setContactFormModal(false);
     const contactObject = {
@@ -70,6 +75,7 @@ const Contacts = () => {
       github: github.trim(),
       notes: notes.trim(),
       priority: priority === "yes" ? true : false,
+      createdBy: user$id,
     };
     if (
       contacts.find(

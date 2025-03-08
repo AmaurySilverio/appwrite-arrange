@@ -5,35 +5,30 @@ import { useAuth } from "../utils/AuthProvider";
 import Navbar from "../components/Navbar";
 
 const Login = () => {
-  const { user, loginUser } = useAuth();
+  const { user, loginUser, isLoading } = useAuth();
   const navigate = useNavigate();
 
   const loginForm = useRef(null);
 
+  // useEffect(() => {
+  //   if (!isLoading && user) {
+  //     console.log("Navigating to home...");
+  //     navigate("/");
+  //   }
+  // }, [user, navigate, isLoading]);
   useEffect(() => {
-    if (user === true) {
-      console.log(user);
+    if (user) {
       navigate("/");
     }
-  }, [user, navigate]);
-
-  // const [emailInputValue, setEmailInputValue] = useState("");
-  // const [passwordInputValue, setPasswordInputValue] = useState("");
-
-  // const onEmailInputChange = (e) => {
-  //   setEmailInputValue(e.target.value);
-  // };
-  // const onPasswordInputChange = (e) => {
-  //   setPasswordInputValue(e.target.value);
-  // };
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const email = loginForm.current.email.value;
+    const email = loginForm.current.email.value.trim();
     const password = loginForm.current.password.value;
 
     const userInfo = { email, password };
-    console.log(userInfo);
+    console.log("Submitting login:", userInfo);
     loginUser(userInfo);
   };
   return (
@@ -49,8 +44,6 @@ const Login = () => {
                 id="email"
                 placeholder="john@gmail.com"
                 name="email"
-                // value={emailInputValue}
-                // onChange={onEmailInputChange}
                 required
               />
             </div>
@@ -61,8 +54,6 @@ const Login = () => {
                 id="password"
                 placeholder="********"
                 name="password"
-                // value={passwordInputValue}
-                // onChange={onPasswordInputChange}
                 minLength="8"
                 required
               />

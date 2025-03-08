@@ -9,7 +9,7 @@ export default function ProtectedRoute({ children }) {
   }
 
   if (user === null) {
-    return <Navigate to="/landingPage" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   return children;

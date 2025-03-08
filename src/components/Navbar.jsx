@@ -12,11 +12,11 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
-  const { user } = useAuth();
+  const { user, logOutUser } = useAuth();
 
-  const logoutClick = () => {
-    navigate("/login");
-  };
+  // const logoutClick = () => {
+  //   navigate("/login");
+  // };
 
   useEffect(() => {
     if (location.pathname === "/profile") {
@@ -78,7 +78,7 @@ const Navbar = () => {
                       <Link to="/profile" className="dropdown-item">
                         <span className="item">Profile</span>
                       </Link>
-                      <div className="dropdown-item" onClick={logoutClick}>
+                      <div className="dropdown-item" onClick={logOutUser}>
                         <span className="item">Log Out</span>
                       </div>
                     </div>

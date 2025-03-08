@@ -1,6 +1,7 @@
 import Button from "./Button";
 import { useState, useEffect } from "react";
 import documentService from "../services/documents";
+import { useAuth } from "../utils/AuthProvider";
 
 const Filter = ({
   searchValue,
@@ -16,12 +17,15 @@ const Filter = ({
   const [showDropDown, setShowDropDown] = useState(false);
   const [documents, setDocuments] = useState([]);
 
+  const { user } = useAuth();
+
   const documentsClicked = () => {
     setShowDropDown(!showDropDown);
   };
 
   useEffect(() => {
-    documentService.getAll().then((initialDocuments) => {
+    const user$id = user.$id;
+    documentService.getAll(user$id).then((initialDocuments) => {
       setDocuments(initialDocuments);
     });
     // .catch((error) => {
@@ -95,16 +99,20 @@ const Filter = ({
           </Button>
           {showDropDown && (
             <div className="documents-dropdown-container">
-              {documents.map((document) => (
-                <a
-                  key={document.$id}
-                  className="dropdown-item"
-                  href={document.document}
-                  target="_blank"
-                >
-                  {document.title}
-                </a>
-              ))}
+              {documents.length > 0 ? (
+                documents.map((document) => (
+                  <a
+                    key={document.$id}
+                    className="dropdown-item"
+                    href={document.document}
+                    target="_blank"
+                  >
+                    {document.title}
+                  </a>
+                ))
+              ) : (
+                <span className="dropdown-item">No Documents</span>
+              )}
             </div>
           )}
         </div>

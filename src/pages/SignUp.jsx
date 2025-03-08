@@ -1,36 +1,40 @@
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { useAuth } from "../utils/AuthProvider";
 import Navbar from "../components/Navbar";
 
 const SignUp = () => {
-  const [firstNameInputValue, setFirstNameInputValue] = useState("");
-  const [lastNameInputValue, setLastNameInputValue] = useState("");
-  const [emailInputValue, setEmailInputValue] = useState("");
-  const [passwordInputValue, setPasswordInputValue] = useState("");
-  const [confirmPasswordInputValue, setConfirmPasswordInputValue] =
-    useState("");
+  const registerForm = useRef(null);
+  const { user, registerUser } = useAuth();
+  const navigate = useNavigate();
 
-  const onFirstNameInputChange = (e) => {
-    setFirstNameInputValue(e.target.value);
-  };
-  const onLastNameInputChange = (e) => {
-    setLastNameInputValue(e.target.value);
-  };
-  const onEmailInputChange = (e) => {
-    setEmailInputValue(e.target.value);
-  };
-  const onPasswordInputChange = (e) => {
-    setPasswordInputValue(e.target.value);
-  };
-  const onConfirmPasswordInputChange = (e) => {
-    setConfirmPasswordInputValue(e.target.value);
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const firstName = registerForm.current.firstName.value.trim();
+    const lastName = registerForm.current.lastName.value.trim();
+    const name = `${firstName} ${lastName}`;
+    const email = registerForm.current.email.value.trim();
+    const password1 = registerForm.current.password1.value;
+    const password2 = registerForm.current.password2.value;
+    console.log(name);
+    if (password1 !== password2) {
+      alert("Passwords do not Match!");
+    }
+    const userInfo = { name, email, password1, password2 };
+    registerUser(userInfo);
   };
   return (
     <>
       <Navbar />
       <div className="sign-up-container">
-        <form>
+        <form ref={registerForm} onSubmit={handleSubmit}>
           <div className="form-content">
             <div className="form-top">
               <div className="form-input-data-half-width">
@@ -39,8 +43,7 @@ const SignUp = () => {
                   type="text"
                   id="first-name"
                   placeholder="Amaury"
-                  value={firstNameInputValue}
-                  onChange={onFirstNameInputChange}
+                  name="firstName"
                   required
                 />
               </div>
@@ -50,8 +53,7 @@ const SignUp = () => {
                   type="text"
                   id="last-name"
                   placeholder="Silverio"
-                  value={lastNameInputValue}
-                  onChange={onLastNameInputChange}
+                  name="lastName"
                   required
                 />
               </div>
@@ -62,8 +64,7 @@ const SignUp = () => {
                 type="text"
                 id="email"
                 placeholder="john@gmail.com"
-                value={emailInputValue}
-                onChange={onEmailInputChange}
+                name="email"
                 required
               />
             </div>
@@ -73,8 +74,7 @@ const SignUp = () => {
                 type="password"
                 id="password"
                 placeholder="********"
-                value={passwordInputValue}
-                onChange={onPasswordInputChange}
+                name="password1"
                 minLength="8"
                 required
               />
@@ -85,8 +85,7 @@ const SignUp = () => {
                 type="password"
                 id="confirm-password"
                 placeholder="********"
-                value={confirmPasswordInputValue}
-                onChange={onConfirmPasswordInputChange}
+                name="password2"
                 minLength="8"
                 required
               />

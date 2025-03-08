@@ -17,6 +17,7 @@ const CompanyDetails = ({
     } else {
       ref.current?.close();
     }
+    console.log(company);
   }, [openCompanyDetailsModal]);
   const star = company.priority ? "fa-solid fa-star" : "fa-regular fa-star";
   const checkOr = company.applied
@@ -42,6 +43,11 @@ const CompanyDetails = ({
             <p className="job-description">{company.description}</p>
           </div>
           <div className="details-toggles">
+            <i
+              className={`icon-border ${star}`}
+              style={{ color: "#FFD43B" }}
+              onClick={() => toggleImportance(company.$id)}
+            ></i>
             <a
               href={company.link}
               target="_blank"
@@ -52,27 +58,28 @@ const CompanyDetails = ({
             >
               <i className="fa-solid fa-link" style={{ color: "#7d7d7d" }}></i>
             </a>
-            <i
-              className={`icon-border ${star}`}
-              style={{ color: "#FFD43B" }}
-              onClick={() => toggleImportance(company.$id)}
-            ></i>
             {/* <i
               className="icon-border fa-solid fa-pen-to-square"
               style={{ color: "#7d7d7d" }}
               onClick={handleEdit}
             ></i> */}
+            {/* <div className={showText}>
+                <p>Applied</p>
+              </div> */}
+            {/* <div className="applied-hover">
+              <p>Toggle applied status</p>
+            </div> */}
             <i
-              className={`icon-border ${checkOr}`}
+              className={`icon-border applied ${checkOr}`}
               style={{ color: "#7d7d7d" }}
               onClick={() => toggleApplied(company.$id)}
-            ></i>
-            {/* <Button
-              className={company.applied ? "applied-btn" : ""}
-              onClick={() => toggleApplied(company$id)}
             >
-              {company.applied ? "Applied!" : "Applied?"}
-            </Button> */}
+              <div className="applied-hover">
+                <p>
+                  Toggle<br></br>applied<br></br>status
+                </p>
+              </div>
+            </i>
           </div>
         </div>
         <div className="details-buttons">

@@ -7,6 +7,7 @@ import CompaniesField from "./components/CompaniesField";
 import Notification from "./components/Notification";
 import ConfirmNotification from "./components/ConfirmNotification";
 import CompanyDetails from "./components/CompanyDetails";
+import { useAuth } from "./utils/AuthProvider";
 
 function App() {
   const [companies, setCompanies] = useState([]);
@@ -29,9 +30,12 @@ function App() {
   const [createJob, setCreateJob] = useState(false);
   const [companyFormModal, setCompanyFormModal] = useState(false);
 
+  const { user } = useAuth();
+
   useEffect(() => {
+    const user$id = user.$id;
     companyService
-      .getAll()
+      .getAll(user$id)
       .then((initialCompanies) => {
         setCompanies(initialCompanies);
       })
@@ -147,6 +151,7 @@ function App() {
   };
 
   const addCompany = (event) => {
+    const user$id = user.$id;
     event.preventDefault();
     setCompanyFormModal(false);
     const companyObject = {
@@ -157,6 +162,7 @@ function App() {
       description: newDescription.trim(),
       priority: priority === "yes" ? true : false,
       applied: applied === "yes" ? true : false,
+      createdBy: user$id,
     };
     if (
       companies.find(

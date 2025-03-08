@@ -1,4 +1,4 @@
-import { Client, Databases, ID } from "appwrite";
+import { Client, Databases, ID, Query } from "appwrite";
 
 const client = new Client()
   .setEndpoint("https://cloud.appwrite.io/v1")
@@ -6,10 +6,11 @@ const client = new Client()
 
 const databases = new Databases(client);
 
-const getAll = () => {
+const getAll = (user$id) => {
   const request = databases.listDocuments(
     import.meta.env.VITE_DATABASE_ID,
-    import.meta.env.VITE_CONTACTS_COLLECTION_ID
+    import.meta.env.VITE_CONTACTS_COLLECTION_ID,
+    [Query.contains("createdBy", user$id)]
   );
   return request.then((response) => response.documents);
 };
