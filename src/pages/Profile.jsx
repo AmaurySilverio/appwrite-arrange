@@ -23,7 +23,6 @@ const Profile = () => {
 
   useEffect(() => {
     const user$id = user.$id;
-    console.log(user$id.toString());
     documentService
       .getAll(user$id)
       .then((initialDocuments) => {
