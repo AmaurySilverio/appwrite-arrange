@@ -3,22 +3,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { useAuth } from "../utils/AuthProvider";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Login = () => {
-  const { user, loginUser, isLoading } = useAuth();
+  const { user, loginUser } = useAuth();
   const navigate = useNavigate();
 
   const loginForm = useRef(null);
 
-  // useEffect(() => {
-  //   if (!isLoading && user) {
-  //     console.log("Navigating to home...");
-  //     navigate("/");
-  //   }
-  // }, [user, navigate, isLoading]);
   useEffect(() => {
     if (user) {
-      navigate("/");
+      navigate("/home");
     }
   }, []);
 
@@ -28,13 +23,13 @@ const Login = () => {
     const password = loginForm.current.password.value;
 
     const userInfo = { email, password };
-    console.log("Submitting login:", userInfo);
+    // console.log("Submitting login:", userInfo);
     loginUser(userInfo);
   };
   return (
     <>
       <Navbar />
-      <div className="login-container">
+      <main className="login-container">
         <form ref={loginForm} onSubmit={handleSubmit}>
           <div className="form-content">
             <div className="form-input-data-full-width">
@@ -60,16 +55,17 @@ const Login = () => {
             </div>
           </div>
           <div className="login-form-buttons">
-            <Button type="submit">Login</Button>
+            <Button type="submit">Log In</Button>
           </div>
           <p>
-            Don't have an account? <Link to="/signUp">Register</Link>.
+            Don't have an account? <Link to="/signUp">Sign Up</Link>.
           </p>
           <p>
-            Or go <Link to="/landingPage">home</Link>.
+            Or go <Link to="/">home</Link>.
           </p>
         </form>
-      </div>
+      </main>
+      <Footer />
     </>
   );
 };

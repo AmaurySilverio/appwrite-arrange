@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { useAuth } from "../utils/AuthProvider";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const SignUp = () => {
   const registerForm = useRef(null);
@@ -11,7 +12,7 @@ const SignUp = () => {
 
   useEffect(() => {
     if (user) {
-      navigate("/");
+      navigate("/home");
     }
   }, []);
 
@@ -23,7 +24,6 @@ const SignUp = () => {
     const email = registerForm.current.email.value.trim();
     const password1 = registerForm.current.password1.value;
     const password2 = registerForm.current.password2.value;
-    console.log(name);
     if (password1 !== password2) {
       alert("Passwords do not Match!");
     }
@@ -33,7 +33,7 @@ const SignUp = () => {
   return (
     <>
       <Navbar />
-      <div className="sign-up-container">
+      <main className="sign-up-container">
         <form ref={registerForm} onSubmit={handleSubmit}>
           <div className="form-content">
             <div className="form-top">
@@ -95,13 +95,14 @@ const SignUp = () => {
             <Button type="submit">Sign Up</Button>
           </div>
           <p>
-            Already have an account? <Link to="/login">Login</Link>
+            Already have an account? <Link to="/login">Log In</Link>.
           </p>
           <p>
-            Or go <Link to="/landingPage">home</Link>.
+            Or go <Link to="/">home</Link>.
           </p>
         </form>
-      </div>
+      </main>
+      <Footer />
     </>
   );
 };

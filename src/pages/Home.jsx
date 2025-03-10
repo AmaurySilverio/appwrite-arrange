@@ -1,16 +1,20 @@
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import ToDoList from "../components/ToDoList";
 
 const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="hero-container">
+      <main className="home-container">
         <div className="pomodoro">
           Pomodoro that turns into a widget that follows you from page to page.
         </div>
-        <div className="to-do-list">To-do list</div>
-      </div>
-      <div className="interactive">
+        <div className="to-do-list-wrapper">
+          <ToDoList />
+        </div>
+      </main>
+      {/* <div className="interactive">
         <p>
           interactive aspect where users can see how many people are 'online'
           working on their job boards. I'm not sure how it will be displayed yet
@@ -19,9 +23,8 @@ const Home = () => {
           Resets every 24 hours. "# people invested in their future today. Don't
           get got, go get. Keep pushing!"
         </p>
-      </div>
-
-      {/* <h5>100Devs Job tracking application. Keep track of employers,</h5> */}
+      </div> */}
+      <Footer />
     </>
   );
 };

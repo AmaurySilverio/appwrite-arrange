@@ -5,6 +5,7 @@ import ConfirmNotification from "../components/ConfirmNotification";
 import { useState, useEffect } from "react";
 import DocumentsField from "../components/DocumentsField";
 import DocumentForm from "../components/DocumentForm";
+import Footer from "../components/Footer";
 import { useAuth } from "../utils/AuthProvider";
 
 const Profile = () => {
@@ -71,7 +72,6 @@ const Profile = () => {
       title: title.trim(),
       createdBy: user$id,
     };
-    console.log(documentObject);
     if (
       documents.find(
         (document) =>
@@ -148,13 +148,24 @@ const Profile = () => {
   return (
     <>
       <Navbar />
-      <div className="profile-header-container">
-        <p>
-          Store and organize all your job-specific resumes, cover letters, and
-          portfolios in one place. Easily upload your Google Docs links and
-          manage them with ease — view, upload, or delete them below.
-        </p>
-      </div>
+      <main className="content-container">
+        <div className="profile-header-container">
+          <h2 className="profile-header-text">Profile</h2>
+          <p>
+            Store and organize all your job-specific resumes, cover letters, and
+            portfolios in one place. Easily upload your Google Docs links and
+            manage them with ease — view, upload, or delete them below.
+          </p>
+        </div>
+        <DocumentsField
+          documentsToShow={[...documentsToShow]}
+          clickAddButton={() => setDocumentFormModal(true)}
+          handleCheckboxChange={handleCheckboxChange}
+          selectedDocuments={selectedDocuments}
+          removeDocument={removeDocument}
+        />
+      </main>
+      <Footer />
       {documentFormModal && (
         <DocumentForm
           onSubmit={addDocument}
@@ -168,13 +179,6 @@ const Profile = () => {
           closeDocumentFormModal={() => setDocumentFormModal(false)}
         />
       )}
-      <DocumentsField
-        documentsToShow={[...documentsToShow]}
-        clickAddButton={() => setDocumentFormModal(true)}
-        handleCheckboxChange={handleCheckboxChange}
-        selectedDocuments={selectedDocuments}
-        removeDocument={removeDocument}
-      />
       <Notification
         openModal={modal}
         closeModal={() => setModal(false)}

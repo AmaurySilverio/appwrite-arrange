@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import Board from "./pages/Board.jsx";
 import Contacts from "./pages/Contacts.jsx";
 import Home from "./pages/Home.jsx";
 import Profile from "./pages/Profile.jsx";
@@ -9,12 +9,14 @@ import NotFound from "./pages/NotFound.jsx";
 import LandingPage from "./pages/LandingPage.jsx";
 import Login from "./pages/Login.jsx";
 import SignUp from "./pages/SignUp.jsx";
+import AboutUs from "./pages/AboutUs.jsx";
+import Contact from "./pages/Contact.jsx";
 import AuthProvider from "./utils/AuthProvider.jsx";
 import ProtectedRoute from "./utils/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/home",
     element: (
       <ProtectedRoute>
         <Home />
@@ -26,7 +28,7 @@ const router = createBrowserRouter([
     path: "/board",
     element: (
       <ProtectedRoute>
-        <App />
+        <Board />
       </ProtectedRoute>
     ),
     errorElement: <NotFound />,
@@ -50,7 +52,7 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
   },
   {
-    path: "/landingPage",
+    path: "/",
     element: <LandingPage />,
     errorElement: <NotFound />,
   },
@@ -62,6 +64,16 @@ const router = createBrowserRouter([
   {
     path: "/signUp",
     element: <SignUp />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/aboutUs",
+    element: <AboutUs />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
     errorElement: <NotFound />,
   },
 ]);

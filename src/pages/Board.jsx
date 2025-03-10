@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
-import companyService from "./services/companies";
-import Navbar from "./components/Navbar";
-import CompanyForm from "./components/CompanyForm";
-import Filter from "./components/Filter";
-import CompaniesField from "./components/CompaniesField";
-import Notification from "./components/Notification";
-import ConfirmNotification from "./components/ConfirmNotification";
-import CompanyDetails from "./components/CompanyDetails";
-import { useAuth } from "./utils/AuthProvider";
+import companyService from "../services/companies";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import CompanyForm from "../components/CompanyForm";
+import Filter from "../components/Filter";
+import CompaniesField from "../components/CompaniesField";
+import Notification from "../components/Notification";
+import ConfirmNotification from "../components/ConfirmNotification";
+import CompanyDetails from "../components/CompanyDetails";
+import { useAuth } from "../utils/AuthProvider";
 
-function App() {
+function Board() {
   const [companies, setCompanies] = useState([]);
   const [newCompany, setNewCompany] = useState("");
   const [newLocation, setNewLocation] = useState("");
@@ -52,16 +53,6 @@ function App() {
       });
   }, []);
 
-  // const companiesToShow =
-  //   filteredCompanies.length === 0 && newSearch.trim() !== ""
-  //     ? []
-  //     : showAll
-  //     ? filteredCompanies.length < 1
-  //       ? companies
-  //       : filteredCompanies
-  //     : filteredCompanies.length < 1
-  //     ? companies.filter((company) => company.priority)
-  //     : filteredCompanies.filter((company) => company.priority);
   const companiesToShow =
     filteredCompanies.length === 0 && newSearch.trim() !== ""
       ? []
@@ -299,13 +290,6 @@ function App() {
       company.location.toUpperCase().includes(searchTerm.toUpperCase().trim())
     );
   }
-  // const handleSearchSubmit = (event) => {
-  //   event.preventDefault();
-  //   let filteredSearch = companies.filter(filterByCompanyOrLocation);
-  //   setFilteredCompanies(filteredSearch);
-  //   console.log(filteredSearch);
-  //   // setNewSearch("");
-  // };
   const handleClearSearchClick = () => {
     setFilteredCompanies([]);
     setNewSearch("");
@@ -336,34 +320,24 @@ function App() {
           closeCompanyFormModal={() => setCompanyFormModal(false)}
         />
       ) : null}
-      <Notification
-        openModal={modal}
-        closeModal={() => setModal(false)}
-        message={errorMessage}
-      />
-      <ConfirmNotification
-        openConfirmationModal={confirmationModal}
-        closeConfirmationModal={() => setConfirmationModal(false)}
-        confirmRemove={confirmRemove}
-        confirmTitle="Delete Job"
-      />
-      <Filter
-        searchValue={newSearch}
-        onSearchChange={handleSearchChange}
-        onClearSearchClick={handleClearSearchClick}
-        // onSubmitClick={handleSearchSubmit}
-        // submitType="submit"
-        selectedItem={selectedItem}
-        handleSetSelectedItem={handleSetSelectedItem}
-        optionChoiceRender={applied}
-        clickAddButton={() => setCompanyFormModal(true)}
-      />
-      <CompaniesField
-        companiesToShow={[...companiesToShow]}
-        toggleImportance={toggleImportanceOf}
-        removeCompany={removeCompany}
-        showCompanyDetails={showCompanyDetails}
-      />
+      <main className="content-container">
+        <Filter
+          searchValue={newSearch}
+          onSearchChange={handleSearchChange}
+          onClearSearchClick={handleClearSearchClick}
+          selectedItem={selectedItem}
+          handleSetSelectedItem={handleSetSelectedItem}
+          optionChoiceRender={applied}
+          clickAddButton={() => setCompanyFormModal(true)}
+        />
+        <CompaniesField
+          companiesToShow={[...companiesToShow]}
+          toggleImportance={toggleImportanceOf}
+          removeCompany={removeCompany}
+          showCompanyDetails={showCompanyDetails}
+        />
+      </main>
+      <Footer />
       {companyDetailsModal && clickedCompany && (
         <CompanyDetails
           openCompanyDetailsModal={companyDetailsModal}
@@ -377,8 +351,19 @@ function App() {
           company={clickedCompany}
         />
       )}
+      <Notification
+        openModal={modal}
+        closeModal={() => setModal(false)}
+        message={errorMessage}
+      />
+      <ConfirmNotification
+        openConfirmationModal={confirmationModal}
+        closeConfirmationModal={() => setConfirmationModal(false)}
+        confirmRemove={confirmRemove}
+        confirmTitle="Delete Job"
+      />
     </>
   );
 }
 
-export default App;
+export default Board;

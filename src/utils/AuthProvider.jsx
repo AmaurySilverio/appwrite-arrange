@@ -23,8 +23,8 @@ export const AuthProvider = ({ children }) => {
       );
       let accountDetails = await account.get();
 
-      console.log("accountDetails:", accountDetails);
-      console.log("SESSION:", response);
+      // console.log("accountDetails:", accountDetails);
+      // console.log("SESSION:", response);
       setUser(accountDetails);
     } catch (error) {
       console.log(error);

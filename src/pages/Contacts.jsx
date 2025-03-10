@@ -4,6 +4,7 @@ import Notification from "../components/Notification";
 import ConfirmNotification from "../components/ConfirmNotification";
 import Filter from "../components/Filter";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import ContactForm from "../components/ContactForm";
 import ContactsField from "../components/ContactsField";
 import ContactDetails from "../components/ContactDetails";
@@ -348,20 +349,23 @@ const Contacts = () => {
           closeContactFormModal={() => setContactFormModal(false)}
         />
       ) : null}
-      <Filter
-        searchValue={newSearch}
-        onSearchChange={handleSearchChange}
-        onClearSearchClick={handleClearSearchClick}
-        selectedItem={selectedItem}
-        handleSetSelectedItem={handleSetSelectedItem}
-        clickAddButton={() => setContactFormModal(true)}
-      />
-      <ContactsField
-        contactsToShow={[...contactsToShow]}
-        toggleImportance={toggleImportanceOf}
-        removeContact={removeContact}
-        showContactDetails={showContactDetails}
-      />
+      <main className="content-container">
+        <Filter
+          searchValue={newSearch}
+          onSearchChange={handleSearchChange}
+          onClearSearchClick={handleClearSearchClick}
+          selectedItem={selectedItem}
+          handleSetSelectedItem={handleSetSelectedItem}
+          clickAddButton={() => setContactFormModal(true)}
+        />
+        <ContactsField
+          contactsToShow={[...contactsToShow]}
+          toggleImportance={toggleImportanceOf}
+          removeContact={removeContact}
+          showContactDetails={showContactDetails}
+        />
+      </main>
+      <Footer />
       <Notification
         openModal={modal}
         closeModal={() => setModal(false)}

@@ -1,6 +1,19 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
+import Footer from "../components/Footer";
+import { useAuth } from "../utils/AuthProvider";
+
 const LandingPage = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/home");
+    }
+  }, []);
+
   return (
     <>
       <div className="landing-page-container">
@@ -24,6 +37,7 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );

@@ -30,7 +30,7 @@ const Navbar = () => {
     <>
       {user ? (
         <div className="navbar-container">
-          <Link to="/" className="logo">
+          <Link to="/home" className="logo">
             <h1>[arr]ange</h1>
           </Link>
           <div className="navbar-items">
@@ -45,7 +45,7 @@ const Navbar = () => {
               />
             ))} */}
               <NavLink
-                to="/"
+                to="/home"
                 className={({ isActive }) => {
                   return isActive ? "highlight" : "";
                 }}
@@ -90,7 +90,7 @@ const Navbar = () => {
         </div>
       ) : (
         <div className="navbar-container">
-          <Link to="/landingPage" className="logo">
+          <Link to="/" className="logo">
             <h1>[arr]ange</h1>
           </Link>
         </div>
