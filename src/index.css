@@ -141,13 +141,18 @@ ul .item{
   flex-direction: column;
 }
 .pomodoro-title{
-  margin: 2rem auto;
+  width: 80%;
+  line-height: 1.4;
+  margin: 4rem auto 0;
 }
 .controls-container{
   display: flex;
   width: 100%;
   justify-content: center;
   gap: 0.5rem;
+}
+.controls-container i{
+  cursor: pointer;
 }
 .settings-container{
   margin: 2rem auto;
@@ -180,6 +185,11 @@ ul .item{
 .size{
   font-size: 1.6rem;
 }
+@property --progress {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
 .pomodoro-container{
   --size: 132px;
   --bar-width: 20px;
@@ -198,6 +208,13 @@ ul .item{
   display: grid;
   place-items: center;
   font-size: 22px;
+  transition: --progress 500ms linear;
+}
+.pomodoro-container[data-break="true"] {
+  background: conic-gradient(
+    green var(--progress, 0),
+    lightgray 0%
+  );
 }
 .pomodoro-container::after{
   content: attr(aria-valuenow);
@@ -219,6 +236,8 @@ ul .item{
 .to-do-list-title{
   width: 80%;
   margin-top: 4rem;
+  line-height: 1.4;
+
 }
 .to-do-list-container{
   width: 80%;
