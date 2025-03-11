@@ -93,26 +93,48 @@ const ToDoList = () => {
       });
   };
 
+  const removeToDoItem = ($id) => {
+    todoService
+      .remove($id)
+      .then(() => {
+        setToDoItems(toDoItems.filter((i) => i.$id !== $id));
+      })
+      .catch((error) => {
+        setModal(true);
+        setErrorMessage("To Do Item was already deleted from the server.");
+        setTimeout(() => {
+          setModal(false);
+          setErrorMessage("");
+        }, 5000);
+        setToDoItems(toDoItems.filter((i) => i.$id !== $id));
+      });
+  };
+
   const handleValueChange = (e) => {
     setNewItem(e.target.value);
   };
 
   return (
     <>
+      <div className="to-do-list-title">
+        Don't fall into your days like an accident! Create a To-Do List and
+        tackle your job search tasks with confidence. ✅
+      </div>
       <div className="to-do-list-container">
         <form onSubmit={addToDo} className="to-do-form">
-          <label htmlFor="item">New Item</label>
+          <label htmlFor="item">New Item:</label>
           <input
             type="text"
             name="item"
             id="item"
+            placeholder="Apply to NYT Job"
             value={newItem}
             onChange={handleValueChange}
           />
           <Button type="submit">Add</Button>
         </form>
         <div className="to-do-list-items">
-          <h3>To Do List</h3>
+          <h3>Today's To-Dos</h3>
           <ul className="list">
             {toDoItems.map((item) => (
               <li key={item.$id}>
@@ -129,10 +151,9 @@ const ToDoList = () => {
                 <i
                   className="icon-border fa-solid fa-trash"
                   style={{ color: "#7d7d7d" }}
-                  // onClick={(e) => {
-                  //   removeContact(contact.$id);
-                  //   e.stopPropagation();
-                  // }}
+                  onClick={(e) => {
+                    removeToDoItem(item.$id);
+                  }}
                 ></i>
               </li>
             ))}

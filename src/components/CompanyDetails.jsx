@@ -17,7 +17,6 @@ const CompanyDetails = ({
     } else {
       ref.current?.close();
     }
-    console.log(company);
   }, [openCompanyDetailsModal]);
   const star = company.priority ? "fa-solid fa-star" : "fa-regular fa-star";
   const checkOr = company.applied

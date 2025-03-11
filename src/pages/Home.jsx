@@ -1,14 +1,17 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ToDoList from "../components/ToDoList";
+import Pomodoro from "../components/Pomodoro";
+import PomodoroTitle from "../components/PomodoroTitle";
 
 const Home = () => {
   return (
     <>
       <Navbar />
       <main className="home-container">
-        <div className="pomodoro">
-          Pomodoro that turns into a widget that follows you from page to page.
+        <div className="pomodoro-wrapper">
+          <PomodoroTitle />
+          <Pomodoro />
         </div>
         <div className="to-do-list-wrapper">
           <ToDoList />

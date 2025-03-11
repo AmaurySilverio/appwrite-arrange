@@ -133,19 +133,109 @@ ul .item{
 .home-container{
   display: flex;
 }
-.pomodoro{
+.pomodoro-wrapper{
   width: 50%;
   display: flex;
-  border-right: 1px solid black;
-  align-items: center;
+  border-right: 1px dotted black;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.pomodoro-title{
+  margin: 2rem auto;
+}
+.controls-container{
+  display: flex;
+  width: 100%;
   justify-content: center;
+  gap: 0.5rem;
+}
+.settings-container{
+  margin: 2rem auto;
+  border: 1px solid;
+  padding: 1.5rem;
+  border-radius: 0.4rem;
+}
+.settings-container h3{
+  margin: 0;
+}
+.settings-container p{
+  margin: 0.5rem 0 1rem;
+}
+.settings-form{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.settings-content{
+  display: flex;
+  /* gap: 1rem; */
+  justify-content: space-between;
+}
+.settings-input{
+  display: flex;
+  flex-direction: column;
+  width: 56px;
+  gap: 0.1rem;
+}
+.size{
+  font-size: 1.6rem;
+}
+.pomodoro-container{
+  --size: 132px;
+  --bar-width: 20px;
+
+  font-size: 2rem;
+  width: var(--size);
+  aspect-ratio: 1/1;
+  /* background: red; */
+  background: conic-gradient(
+    red var(--progress, 0),
+    /* red 100%, */
+    lightgray 0%
+  );
+  margin: 2rem auto;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+}
+.pomodoro-container::after{
+  content: attr(aria-valuenow);
+  background: white;
+  border-radius: inherit;
+  width: calc(100% - var(--bar-width));
+  aspect-ratio: 1/1;
+  display: grid;
+  place-items: center;
 }
 .to-do-list-wrapper{
   width: 50%;
   display: flex;
-  /* border: 1px solid black; */
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 5rem;
+}
+.to-do-list-title{
+  width: 80%;
+  margin-top: 4rem;
+}
+.to-do-list-container{
+  width: 80%;
+}
+.to-do-form{
+  display: flex;
+  gap: 0.5rem;
   align-items: center;
   justify-content: center;
+}
+.to-do-list-items{
+  display: flex;
+  flex-direction: column;
+}
+.to-do-list-items h3{
+  border-bottom: 1px solid black;
+  padding-inline-start: 20px;
 }
 .list{
   display: flex;
@@ -827,6 +917,9 @@ visibility: visible;
 .li-item{
   list-style-type: none;
 }
+.li-item a{
+  color: blue;
+}
 .document-url{
   text-decoration: underline;
 }
@@ -955,4 +1048,20 @@ th button.btn{
   display: flex;
   flex-direction: column;
   padding: 2rem;
+}
+/* ABOUT US/CONTACT PAGE */
+.about-us-container section{
+  padding: 2rem;
+  line-height: 1.4;
+}
+.about-us-container a{
+  color: blue;
+}
+.about-us-container h3{
+  text-align: center;
+}
+.reach-out-form{
+  display: flex;
+  flex-direction: column;
+  width: 450px;
 }
