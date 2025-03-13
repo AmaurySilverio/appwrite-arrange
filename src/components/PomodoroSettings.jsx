@@ -10,7 +10,7 @@ const PomodoroSettings = ({
   return (
     <div className="settings-container">
       <h3>Settings</h3>
-      <p>Time (minues)</p>
+      <p>Time (minutes)</p>
       <form className="settings-form" onSubmit={handleSettingsSubmit}>
         <div className="settings-content">
           <div className="settings-input">

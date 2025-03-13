@@ -122,7 +122,7 @@ const ToDoList = () => {
       </div>
       <div className="to-do-list-container">
         <form onSubmit={addToDo} className="to-do-form">
-          <label htmlFor="item">New Item:</label>
+          <label htmlFor="item">Item:</label>
           <input
             type="text"
             name="item"
@@ -164,6 +164,7 @@ const ToDoList = () => {
         openModal={modal}
         closeModal={() => setModal(false)}
         message={errorMessage}
+        title="Network Error"
       />
     </>
   );

@@ -133,100 +133,28 @@ ul .item{
 .home-container{
   display: flex;
 }
-.pomodoro-wrapper{
-  width: 50%;
+.home-left-content{
   display: flex;
-  border-right: 1px dotted black;
-  align-items: flex-start;
+  flex: 2;
   flex-direction: column;
+  line-height: 1.4;
+}
+.pomodoro-wrapper{
+  height: 200px;
+}
+.welcome-message{
+  padding: 2rem;
+  padding-top: 0;
 }
 .pomodoro-title{
   width: 80%;
-  line-height: 1.4;
-  margin: 4rem auto 0;
-}
-.controls-container{
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  gap: 0.5rem;
-}
-.controls-container i{
-  cursor: pointer;
-}
-.settings-container{
-  margin: 2rem auto;
-  border: 1px solid;
-  padding: 1.5rem;
-  border-radius: 0.4rem;
-}
-.settings-container h3{
-  margin: 0;
-}
-.settings-container p{
-  margin: 0.5rem 0 1rem;
-}
-.settings-form{
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.settings-content{
-  display: flex;
-  /* gap: 1rem; */
-  justify-content: space-between;
-}
-.settings-input{
-  display: flex;
-  flex-direction: column;
-  width: 56px;
-  gap: 0.1rem;
-}
-.size{
-  font-size: 1.6rem;
-}
-@property --progress {
-  syntax: "<length-percentage>";
-  inherits: false;
-  initial-value: 0%;
-}
-.pomodoro-container{
-  --size: 132px;
-  --bar-width: 20px;
-
-  font-size: 2rem;
-  width: var(--size);
-  aspect-ratio: 1/1;
-  /* background: red; */
-  background: conic-gradient(
-    red var(--progress, 0),
-    /* red 100%, */
-    lightgray 0%
-  );
-  margin: 2rem auto;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 22px;
-  transition: --progress 500ms linear;
-}
-.pomodoro-container[data-break="true"] {
-  background: conic-gradient(
-    green var(--progress, 0),
-    lightgray 0%
-  );
-}
-.pomodoro-container::after{
-  content: attr(aria-valuenow);
-  background: white;
-  border-radius: inherit;
-  width: calc(100% - var(--bar-width));
-  aspect-ratio: 1/1;
-  display: grid;
-  place-items: center;
+  padding: 4rem 2rem;
+  /* margin: 4rem auto 0; */
 }
 .to-do-list-wrapper{
-  width: 50%;
+  flex: 1;
+  padding: 1rem;
+    /* width: 50%; */
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -235,7 +163,7 @@ ul .item{
 }
 .to-do-list-title{
   width: 80%;
-  margin-top: 4rem;
+  margin-top: 3rem;
   line-height: 1.4;
 
 }
@@ -275,6 +203,123 @@ ul .item{
 }
 .list li i{
   cursor: pointer;
+}
+.controls-container{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.controls-container i{
+  cursor: pointer;
+}
+.settings-container{
+  border: 1px solid;
+  border-radius: 0.4rem;
+  margin: 1rem auto;
+  padding: 1rem;
+  background: rgba(103, 188, 240, 0.7);
+}
+.settings-container h3{
+  margin: 0;
+}
+.settings-container p{
+  margin: 0.5rem 0 1rem;
+}
+.settings-form{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.settings-content{
+  display: flex;
+  /* gap: 1rem; */
+  justify-content: space-between;
+}
+.settings-input{
+  display: flex;
+  flex-direction: column;
+  width: 56px;
+  gap: 0.1rem;
+}
+.size{
+  font-size: 1.6rem;
+}
+.arrow-border{
+  border: 1px solid lightgray;
+  padding: 0.1rem;
+  border-radius: 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: whitesmoke;
+  padding-right: 3px;
+  position: absolute;
+  right: -30px;
+  top: 11px;
+  font-size: 2rem;
+  cursor: pointer;
+  opacity: 0.8;
+  color: blue;
+}
+.show{
+  left: 2px;
+}
+.hide{
+  left: -209px;
+}
+.pomodoro-widget-container{
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 0.4rem;
+  top: 80px;
+  z-index: 1;
+  width: 13rem;
+  /* padding: 0 1rem 1rem; */
+  padding: 0 0.5rem 0.5rem;
+  transition: 140ms ease-in-out;
+}
+@property --progress {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+.pomodoro-container{
+  --size: 132px;
+  --bar-width: 20px;
+
+  font-size: 2rem;
+  width: var(--size);
+  aspect-ratio: 1/1;
+  /* background: red; */
+  background: conic-gradient(
+    red var(--progress, 0),
+    /* red 100%, */
+    lightgray 0%
+  );
+  /* margin: 2rem auto; */
+  margin: 0.5rem auto 1rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  transition: --progress 500ms linear;
+}
+.pomodoro-container[data-break="true"] {
+  background: conic-gradient(
+    green var(--progress, 0),
+    lightgray 0%
+  );
+}
+.pomodoro-container::after{
+  content: attr(aria-valuenow);
+  background: white;
+  border-radius: inherit;
+  width: calc(100% - var(--bar-width));
+  aspect-ratio: 1/1;
+  display: grid;
+  place-items: center;
 }
 /* SEARCH INPUT */
 .search-container{
@@ -318,7 +363,8 @@ ul .item{
   background: rgba(60, 178, 40, 0.7);
 }
 .small-document-btn{
-  background-color: rgba(103, 188, 240, 0.7);
+  /* background-color: rgba(103, 188, 240, 0.7); */
+  background-color: rgba(60, 178, 40, 0.57);
 }
 /* .applied-btn{
   background-color: green;
@@ -526,7 +572,7 @@ margin: 0;
   background-color: whitesmoke;
 }
 
-.icon-border:hover{
+.icon-border:hover, .arrow-border:hover{
   border: 1px solid gray;
 }
 /* COMPANY FORM DIALOG */
@@ -541,6 +587,7 @@ margin: 0;
 .form-wrapper{
   padding: 40px 40px 30px 40px;
   position: relative;
+  background-color: rgba(103, 188, 240, 0.7);
 }
 .form-content{
   display: flex;
@@ -612,7 +659,7 @@ margin: 0;
   display: flex;
   gap: 10px;
   justify-content: center;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   position: sticky;
   bottom: -1px;
   /* border-top: 1px solid gray; */
@@ -1069,18 +1116,38 @@ th button.btn{
   padding: 2rem;
 }
 /* ABOUT US/CONTACT PAGE */
-.about-us-container section{
+.about-us-container section, .reach-out-container section{
   padding: 2rem;
   line-height: 1.4;
 }
-.about-us-container a{
+.about-us-container a, .reach-out-container a{
   color: blue;
 }
-.about-us-container h3{
+.reach-out-container h2{
   text-align: center;
+}
+.reach-out-container p{
+  width: 80%;
+  margin: 0 auto;
 }
 .reach-out-form{
   display: flex;
   flex-direction: column;
-  width: 450px;
+  min-width: 240px;
+  max-width: 450px;
+  border: 1px solid black;
+  border-radius: 0.4rem;
+  padding: 2rem;
+  margin: 2rem auto;
+  gap: 0.7rem;
+  background-color: rgba(103, 188, 240, 0.7);
+}
+.reach-out-form-width{  
+  display: flex;
+  flex-direction: column;
+}
+.reach-out-form-width input, .reach-out-form-width textarea{  
+  padding: 6px 12px;
+  border-radius: 2px;
+  border: 1px solid black;
 }

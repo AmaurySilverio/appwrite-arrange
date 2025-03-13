@@ -12,6 +12,7 @@ import SignUp from "./pages/SignUp.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
 import Contact from "./pages/Contact.jsx";
 import AuthProvider from "./utils/AuthProvider.jsx";
+import PomodoroProvider from "./utils/PomodoroContext.jsx";
 import ProtectedRoute from "./utils/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
@@ -80,6 +81,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <AuthProvider>
-    <RouterProvider router={router} />
+    <PomodoroProvider>
+      <RouterProvider router={router} />
+    </PomodoroProvider>
   </AuthProvider>
 );

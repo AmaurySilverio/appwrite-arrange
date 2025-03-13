@@ -355,6 +355,7 @@ function Board() {
         openModal={modal}
         closeModal={() => setModal(false)}
         message={errorMessage}
+        title="Network Error"
       />
       <ConfirmNotification
         openConfirmationModal={confirmationModal}

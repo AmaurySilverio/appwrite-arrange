@@ -1,14 +1,31 @@
-import { useState, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
+import { PomodoroContext } from "../utils/PomodoroContext";
 import PomodoroControls from "./PomodoroControls";
 import PomodoroSettings from "./PomodoroSettings";
 
-const Pomodoro = () => {
-  const [play, setPlay] = useState(true);
-  const [workTime, setWorkTime] = useState(45);
-  const [breakTime, setBreakTime] = useState(15);
-  const [remainingSeconds, setRemainingSeconds] = useState(workTime * 60);
-  const [onBreak, setOnBreak] = useState(false);
-  const [isRunning, setIsRunning] = useState(false);
+const PomodoroWidget = () => {
+  const {
+    play,
+    setPlay,
+    togglePlay,
+    remainingSeconds,
+    isRunning,
+    setIsRunning,
+    // resetTimer,
+    handleWorkTimeChange,
+    handleBreakTimeChange,
+    // handleSettingsSubmit,
+    setRemainingSeconds,
+    // pomodoroRef,
+    onBreak,
+    setOnBreak,
+    workTime,
+    breakTime,
+    toggleSettings,
+    showSettings,
+    showTimer,
+    toggleTimer,
+  } = useContext(PomodoroContext);
   const pomodoroRef = useRef(null);
   const intervalIdRef = useRef(null);
   let alarm = new Audio("/kitchen-timer.wav");
@@ -67,6 +84,16 @@ const Pomodoro = () => {
     return () => clearInterval(intervalIdRef.current);
   }, [isRunning, onBreak]);
 
+  const resetTimer = () => {
+    setRemainingSeconds(workTime * 60);
+    if (pomodoroRef.current) {
+      pomodoroRef.current.style.setProperty("--progress", "100%");
+    }
+    setPlay(true);
+    setIsRunning(false);
+    setOnBreak(false);
+  };
+
   const formatTime = (totalSeconds) => {
     const hours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
@@ -79,7 +106,6 @@ const Pomodoro = () => {
 
   const handleSettingsSubmit = (e) => {
     e.preventDefault();
-    console.log("Henny");
     setPlay(true);
     setIsRunning(false);
     setRemainingSeconds(workTime * 60);
@@ -87,43 +113,13 @@ const Pomodoro = () => {
       pomodoroRef.current.style.setProperty("--progress", "100%");
     }
   };
-
-  const togglePlay = () => {
-    setPlay((prevPlay) => {
-      const newPlay = !prevPlay;
-
-      if (newPlay) {
-        setIsRunning(false);
-      } else {
-        setIsRunning(true);
-      }
-
-      return newPlay; // Update play state
-    });
-  };
-
-  // const onStopClick = () => {
-  //   console.log("Holla");
-  // };
-  const onResetClick = () => {
-    console.log("reset");
-    setRemainingSeconds(workTime * 60);
-    if (pomodoroRef.current) {
-      pomodoroRef.current.style.setProperty("--progress", "100%");
-    }
-    setPlay(true);
-    setIsRunning(false);
-    setOnBreak(false);
-  };
-  const handleWorkTimeChange = (e) => {
-    setWorkTime(e.target.value);
-  };
-  const handleBreakTimeChange = (e) => {
-    setBreakTime(e.target.value);
-  };
-
+  const showStyling = showTimer ? "show" : "hide";
   return (
-    <>
+    <div className={`pomodoro-widget-container ${showStyling}`}>
+      <i
+        className="fa-solid fa-chevron-right arrow-border"
+        onClick={toggleTimer}
+      ></i>
       <div
         ref={pomodoroRef}
         className="pomodoro-container"
@@ -133,17 +129,42 @@ const Pomodoro = () => {
       <PomodoroControls
         play={play}
         onClick={togglePlay}
-        onResetClick={onResetClick}
+        onResetClick={resetTimer}
+        toggleSettings={toggleSettings}
       />
-      <PomodoroSettings
-        workTime={workTime}
-        breakTime={breakTime}
-        handleWorkTimeChange={handleWorkTimeChange}
-        handleBreakTimeChange={handleBreakTimeChange}
-        handleSettingsSubmit={handleSettingsSubmit}
+      {showSettings && (
+        <PomodoroSettings
+          workTime={workTime}
+          breakTime={breakTime}
+          handleWorkTimeChange={handleWorkTimeChange}
+          handleBreakTimeChange={handleBreakTimeChange}
+          handleSettingsSubmit={handleSettingsSubmit}
+        />
+      )}
+
+      {/* <div
+        ref={pomodoroRef}
+        className="pomodoro-container"
+        aria-valuenow={formatTime(remainingSeconds)}
+        data-break={onBreak}
+      ></div>
+      <PomodoroControls
+        play={play}
+        onClick={togglePlay}
+        onResetClick={resetTimer}
+        toggleSettings={toggleSettings}
       />
-    </>
+      {showSettings && (
+        <PomodoroSettings
+          workTime={workTime}
+          breakTime={breakTime}
+          handleWorkTimeChange={handleWorkTimeChange}
+          handleBreakTimeChange={handleBreakTimeChange}
+          handleSettingsSubmit={handleSettingsSubmit}
+        />
+      )} */}
+    </div>
   );
 };
 
-export default Pomodoro;
+export default PomodoroWidget;

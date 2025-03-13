@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import Button from "./Button";
 
-const Notification = ({ message, openModal, closeModal }) => {
+const Notification = ({ message, openModal, closeModal, title }) => {
   const ref = useRef();
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const Notification = ({ message, openModal, closeModal }) => {
 
   return (
     <dialog ref={ref} onCancel={closeModal} className="confirm-dialog">
-      <h3 className="confirm-title">Network Error</h3>
+      <h3 className="confirm-title">{title}</h3>
       <p className="confirm-p">{message}</p>
       <div className="confirm-buttons-container">
         <Button onClick={closeModal}>Close</Button>

@@ -123,7 +123,7 @@ const ContactForm = ({
             <div className="form-input-data-full-width">
               <label htmlFor="email">Email:</label>
               <input
-                type="text"
+                type="email"
                 id="email"
                 placeholder="Amaury@google.com"
                 value={emailInputValue}

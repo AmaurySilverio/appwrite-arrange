@@ -1,6 +1,6 @@
 import React from "react";
 
-const PomodoroControls = ({ play, onClick, onResetClick }) => {
+const PomodoroControls = ({ play, onClick, onResetClick, toggleSettings }) => {
   const playToggle = play ? "fa-play" : "fa-pause";
   const colorToggle = play ? "green" : "red";
   return (
@@ -20,6 +20,11 @@ const PomodoroControls = ({ play, onClick, onResetClick }) => {
           className="fa-solid fa-rotate-left size"
           style={{ color: "blue" }}
           onClick={onResetClick}
+        ></i>
+        <i
+          className="fa-solid fa-gear size"
+          style={{ color: "#7D7D7D" }}
+          onClick={toggleSettings}
         ></i>
       </div>
     </>
