@@ -95,7 +95,11 @@ const Filter = ({
       >
         <div className="documents-dropdown-wrapper">
           <Button className={"document-btn"} onClick={documentsClicked}>
-            My Documents
+            {/* My Documents */}
+            <i
+              className="fa-solid fa-folder-open"
+              style={{ color: "beige" }}
+            ></i>
           </Button>
           {showDropDown && (
             <div className="documents-dropdown-container">
@@ -117,7 +121,8 @@ const Filter = ({
           )}
         </div>
         <Button className={"add-btn"} onClick={clickAddButton}>
-          {optionChoiceRender ? "Add Job" : "Add Contact"}
+          {/* {optionChoiceRender ? "Add Job" : "Add Contact"} */}
+          <i className="fa-solid fa-plus"></i>
         </Button>
       </div>
     </div>

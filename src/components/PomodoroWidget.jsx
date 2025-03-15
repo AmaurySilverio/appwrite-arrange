@@ -66,14 +66,19 @@ const PomodoroWidget = () => {
           // Calculate percentage of time remaining
           const percentage =
             ((prev - 1) / (onBreak ? breakTime * 60 : workTime * 60)) * 100;
-
+          const duration = workTime * 60;
           // Set the --progress CSS property based on the percentage
           if (pomodoroRef.current) {
             pomodoroRef.current.style.setProperty(
               "--progress",
               `${percentage}%`
             );
+            // pomodoroRef.current.style.setProperty("--duration", `${duration}%`);
+            // pomodoroRef.current.setAttribute("data-active", "true");
           }
+          // if (pomodoroRef.current) {
+          //   pomodoroRef.current.style.setProperty("--duration", `${duration}%`);
+          // }
           return prev - 1;
         });
       }, 1000);

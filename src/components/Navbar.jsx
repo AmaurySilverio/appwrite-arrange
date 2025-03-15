@@ -5,18 +5,16 @@ import { useAuth } from "../utils/AuthProvider";
 const Navbar = () => {
   const [showDropDown, setShowDropDown] = useState(false);
   const [highlight, setHighlight] = useState(false);
+  const [menuToggle, setMenuToggle] = useState(false);
 
   const accountClicked = () => {
     setShowDropDown(!showDropDown);
   };
+  const handleMenuToggle = () => setMenuToggle(!menuToggle);
 
   const navigate = useNavigate();
 
   const { user, logOutUser } = useAuth();
-
-  // const logoutClick = () => {
-  //   navigate("/login");
-  // };
 
   useEffect(() => {
     if (location.pathname === "/profile") {
@@ -33,8 +31,11 @@ const Navbar = () => {
           <Link to="/home" className="logo">
             <h1>[arr]ange</h1>
           </Link>
+          <div className="menu-icon" onClick={handleMenuToggle}>
+            <i className={menuToggle ? "fas fa-times" : "fas fa-bars"}></i>
+          </div>
           <div className="navbar-items">
-            <ul>
+            <ul className={menuToggle ? "nav-menu active" : "nav-menu"}>
               {/* {navItems.map((item) => (
               <NavLink
                 key={item.length}
