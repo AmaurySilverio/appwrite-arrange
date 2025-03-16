@@ -150,7 +150,7 @@ const Profile = () => {
       <Navbar />
       <main className="content-container">
         <div className="profile-header-container">
-          <h2 className="profile-header-text">Profile</h2>
+          <h1 className="profile-header-text">Profile</h1>
           <p>
             Store and organize all your job-specific resumes, cover letters, and
             portfolios in one place. Easily upload your Google Docs links and

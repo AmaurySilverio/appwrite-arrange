@@ -122,7 +122,9 @@ const PomodoroWidget = () => {
   return (
     <div className={`pomodoro-widget-container ${showStyling}`}>
       <i
-        className="fa-solid fa-chevron-right arrow-border"
+        className={`fa-solid ${
+          showTimer ? "fa-chevron-left" : "fa-chevron-right"
+        } arrow-border`}
         onClick={toggleTimer}
       ></i>
       <div

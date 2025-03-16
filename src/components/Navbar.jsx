@@ -47,21 +47,25 @@ const Navbar = () => {
             ))} */}
               <NavLink
                 to="/home"
-                className={({ isActive }) => {
-                  return isActive ? "highlight" : "";
-                }}
+                className={({ isActive }) =>
+                  !menuToggle && isActive ? "highlight" : ""
+                }
               >
                 <li className="item">Home</li>
               </NavLink>
               <NavLink
                 to="/board"
-                className={({ isActive }) => (isActive ? "highlight" : "")}
+                className={({ isActive }) =>
+                  !menuToggle && isActive ? "highlight" : ""
+                }
               >
                 <li className="item">Board</li>
               </NavLink>
               <NavLink
                 to="/contacts"
-                className={({ isActive }) => (isActive ? "highlight" : "")}
+                className={({ isActive }) =>
+                  !menuToggle && isActive ? "highlight" : ""
+                }
               >
                 <li className="item">Contacts</li>
               </NavLink>
@@ -70,7 +74,9 @@ const Navbar = () => {
                 onMouseLeave={() => setShowDropDown(false)}
               >
                 <li
-                  className={`item cursor ${highlight ? "highlight" : ""}`}
+                  className={`item cursor ${
+                    !menuToggle && highlight ? "highlight" : ""
+                  }`}
                   onClick={accountClicked}
                 >
                   Account

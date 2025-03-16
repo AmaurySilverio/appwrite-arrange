@@ -321,6 +321,7 @@ function Board() {
         />
       ) : null}
       <main className="content-container">
+        <h1>Companies</h1>
         <Filter
           searchValue={newSearch}
           onSearchChange={handleSearchChange}

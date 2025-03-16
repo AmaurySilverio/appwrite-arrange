@@ -248,6 +248,9 @@ ul .item{
 .size{
   font-size: 1.6rem;
 }
+.fa-chevron-right, .fa-chevron-left {
+  transition: transform 0.4s ease-in-out;
+}
 .arrow-border{
   border: 1px solid lightgray;
   padding: 0.1rem;
@@ -333,6 +336,11 @@ ul .item{
   place-items: center;
 }
 /* SEARCH INPUT */
+.content-container h1{
+  text-align: center;
+  margin-bottom: 0;
+  font-size: 1.8rem;
+}
 .search-container{
   display: flex;
   margin: 1rem 2rem 2rem;
@@ -1178,8 +1186,21 @@ th button.btn{
     font-size: 1.8rem;
     cursor: pointer;
     margin-right: 0.7rem;
+    transition: transform 0.3s ease-in-out;
 }
-.nav-menu{
+  .menu-icon i {
+  /* display: inline-block; */
+    transition: transform 0.3s ease-in-out, opacity 0.2s;
+}
+  .menu-icon .fa-bars {
+    transform: rotate(0deg);
+    opacity: 1;
+}
+  .menu-icon .fa-times {
+    transform: rotate(90deg);
+    opacity: 1;
+}
+  .nav-menu{
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -1187,18 +1208,37 @@ th button.btn{
   position: absolute;
   top : 70px;
   left: -100%;
-  opacity: 1;
+  opacity: 0;
   transition: all 0.5s ease;
   justify-content: start;
   padding: 0;
   margin: 0;
   background: rgb(99, 89, 133);
+  z-index: 1;
 }
 .nav-menu.active{
   left: 0;
   opacity: 1;
   transition: all 0.5s ease;
   z-index: 1;
+}
+.nav-menu .highlight {
+  border: none;
+}
+.navbar-items ul{
+  gap: 0;
+}
+ul .item{
+  height: 80px;
+  width: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  transition-duration: 0.3s;
+}
+ul .item:hover{
+  background: rgb(247, 245, 240);
 }
 }
 /* FILTER COMPONENT */

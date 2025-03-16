@@ -350,6 +350,7 @@ const Contacts = () => {
         />
       ) : null}
       <main className="content-container">
+        <h1>Contacts</h1>
         <Filter
           searchValue={newSearch}
           onSearchChange={handleSearchChange}
