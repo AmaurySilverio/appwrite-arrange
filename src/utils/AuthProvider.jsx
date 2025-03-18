@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { account } from "../../appwriteConfig";
+import { useNavigate } from "react-router-dom";
 import { ID } from "appwrite";
 
 const AuthContext = createContext();
@@ -9,9 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // setTimeout(() => {
     checkUserStatus();
-    // }, 1000);
   }, []);
 
   const loginUser = async (userInfo) => {
@@ -32,9 +31,14 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  const logOutUser = () => {
-    account.deleteSession("current");
-    setUser(null);
+  const logOutUser = (callback) => {
+    account
+      .deleteSession("current")
+      .then(() => {
+        setUser(null);
+        if (callback) callback();
+      })
+      .catch((error) => console.error("Logout failed:", error));
   };
 
   const registerUser = async (userInfo) => {

@@ -1,5 +1,5 @@
 import Button from "./Button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import documentService from "../services/documents";
 import { useAuth } from "../utils/AuthProvider";
 
@@ -7,8 +7,6 @@ const Filter = ({
   searchValue,
   onSearchChange,
   onClearSearchClick,
-  // onSubmitClick,
-  // submitType,
   selectedItem,
   handleSetSelectedItem,
   optionChoiceRender,
@@ -16,30 +14,55 @@ const Filter = ({
 }) => {
   const [showDropDown, setShowDropDown] = useState(false);
   const [documents, setDocuments] = useState([]);
-
   const { user } = useAuth();
+  const dropdownRef = useRef(null);
 
   const documentsClicked = () => {
     setShowDropDown(!showDropDown);
   };
-
   useEffect(() => {
-    const user$id = user.$id;
-    documentService.getAll(user$id).then((initialDocuments) => {
-      setDocuments(initialDocuments);
-    });
-    // .catch((error) => {
-    //   setModal(true);
-    //   setErrorMessage(
-    //     "There is a problem with the server. Please refresh the page."
-    //   );
-    //   setTimeout(() => {
-    //     setModal(false);
-    //     setErrorMessage("");
-    //   }, 5000);
-    //   console.log(error);
-    // });
-  }, []);
+    // Fetch user's documents
+    const fetchDocuments = async () => {
+      if (user?.$id) {
+        const initialDocuments = await documentService.getAll(user.$id);
+        setDocuments(initialDocuments);
+      }
+    };
+    fetchDocuments();
+
+    // Handle outside click to close dropdown
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropDown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [user]);
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+  //       setShowDropDown(false);
+  //     }
+  //   };
+
+  //   document.addEventListener("mousedown", handleClickOutside);
+
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   const user$id = user.$id;
+  //   documentService.getAll(user$id).then((initialDocuments) => {
+  //     setDocuments(initialDocuments);
+  //   });
+  // }, []);
 
   return (
     <div className="search-container">
@@ -91,7 +114,8 @@ const Filter = ({
       </div>
       <div
         className="add-button-container"
-        onMouseLeave={() => setShowDropDown(false)}
+        ref={dropdownRef}
+        // onMouseLeave={() => setShowDropDown(false)}
       >
         <div className="documents-dropdown-wrapper">
           <Button className={"document-btn"} onClick={documentsClicked}>

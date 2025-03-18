@@ -42,11 +42,27 @@ const ContactDetails = ({
       <div className="contact-details-wrapper">
         <div className="details-container">
           <div className="details-content">
-            <h2 className="pad4">
-              {contact.firstName} {contact.lastName}
-            </h2>
-            <p className="details-job-title pad4">{contact.jobTitle}</p>
-            <p className="details-company pad4">{contact.company}</p>
+            <div className="details-top-half">
+              <div className="details-info">
+                <h2 className="pad4">
+                  {contact.firstName} {contact.lastName}
+                </h2>
+                <p className="details-job-title pad4">{contact.jobTitle}</p>
+                <p className="details-company pad4">{contact.company}</p>
+              </div>
+              <div className="details-toggles padding-top">
+                <i
+                  className={`icon-border ${star}`}
+                  style={{ color: "#FFD43B" }}
+                  onClick={() => toggleImportance(contact.$id)}
+                ></i>
+                {/* <i
+              className="icon-border fa-solid fa-pen-to-square"
+              style={{ color: "#7d7d7d" }}
+              onClick={handleEdit}
+            ></i> */}
+              </div>
+            </div>
             <div className="contact-info pad4 pad-top1">
               <i
                 className="fa-solid fa-location-dot"
@@ -71,17 +87,17 @@ const ContactDetails = ({
               <i className="fa-solid fa-phone" style={{ color: "#7d7d7d" }}></i>
               <p>{contact.phone}</p>
             </div>
-            <div className="contact-info pad4">
+            <div className="contact-info pad4 nowrap">
               <i
                 className="fa-solid fa-mug-hot"
                 style={{ color: "#7d7d7d" }}
               ></i>
-              <p>{contact.chat}</p>
+              <p>{contact.chat.substring(0, 10)}</p>
             </div>
             <a
               href={contact.linkedIn}
               target="_blank"
-              className="contact-info pad4"
+              className="contact-info pad4 nowrap"
             >
               <i
                 className="fa-brands fa-linkedin"
@@ -92,7 +108,7 @@ const ContactDetails = ({
             <a
               href={contact.twitter}
               target="_blank"
-              className="contact-info pad4"
+              className="contact-info pad4 nowrap"
             >
               <i
                 className="fa-brands fa-x-twitter"
@@ -103,7 +119,7 @@ const ContactDetails = ({
             <a
               href={contact.github}
               target="_blank"
-              className="contact-info pad4"
+              className="contact-info pad4 nowrap"
             >
               <i
                 className="fa-brands fa-square-github"
@@ -115,18 +131,6 @@ const ContactDetails = ({
               <p>Notes:</p>
               <p>{contact.notes}</p>
             </div>
-          </div>
-          <div className="details-toggles">
-            <i
-              className={`icon-border ${star}`}
-              style={{ color: "#FFD43B" }}
-              onClick={() => toggleImportance(contact.$id)}
-            ></i>
-            {/* <i
-              className="icon-border fa-solid fa-pen-to-square"
-              style={{ color: "#7d7d7d" }}
-              onClick={handleEdit}
-            ></i> */}
           </div>
         </div>
         <div className="details-buttons">

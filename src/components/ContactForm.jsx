@@ -131,7 +131,7 @@ const ContactForm = ({
               />
             </div>
 
-            <div className="form-input-data-half-width">
+            <div className="form-input-data-half-width phone-width">
               <label htmlFor="phone" className="phone-label">
                 Phone:<p>Format: 978-456-7890</p>
               </label>
@@ -154,7 +154,7 @@ const ContactForm = ({
                 type="date"
                 id="chat"
                 value={chatInputValue}
-                // defaultValue={dateTimeLocalNow}
+                max={dateTimeLocalNow}
                 onChange={onChatInputChange}
                 className="chat-width"
               />

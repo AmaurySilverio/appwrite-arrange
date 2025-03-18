@@ -39,6 +39,7 @@ const CompanyDetails = ({
             <h2>{company.name}</h2>
             <p>{company.location}</p>
             <h3>{company.position}</h3>
+            <p className="underline">Description:</p>
             <p className="job-description">{company.description}</p>
           </div>
           <div className="details-toggles">
@@ -62,12 +63,6 @@ const CompanyDetails = ({
               style={{ color: "#7d7d7d" }}
               onClick={handleEdit}
             ></i> */}
-            {/* <div className={showText}>
-                <p>Applied</p>
-              </div> */}
-            {/* <div className="applied-hover">
-              <p>Toggle applied status</p>
-            </div> */}
             <i
               className={`icon-border applied ${checkOr}`}
               style={{ color: "#7d7d7d" }}

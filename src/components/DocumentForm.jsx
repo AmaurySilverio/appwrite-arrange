@@ -5,8 +5,7 @@ const DocumentForm = ({
   onSubmit,
   onChange,
   value,
-  onRadioChange,
-  typeOfDocument,
+  onSelectChange,
   titleValue,
   onTitleChange,
   openDocumentFormModal,
@@ -40,40 +39,11 @@ const DocumentForm = ({
               <label htmlFor="document-type">
                 Is this a Portfolio, Resume, or Cover Letter?
               </label>
-              <div className="radio-btns-documents">
-                <div>
-                  <input
-                    type="radio"
-                    id="resume-radio"
-                    value="resume"
-                    onChange={onRadioChange}
-                    checked={typeOfDocument === "resume"}
-                  />
-                  <label htmlFor="resume-radio">Resume</label>
-                </div>
-                <div>
-                  <input
-                    type="radio"
-                    id="coverLetter-radio"
-                    value="coverLetter"
-                    onChange={onRadioChange}
-                    checked={typeOfDocument === "coverLetter"}
-                  />
-                  <label htmlFor="coverLetter-radio">Cover Letter</label>
-                </div>
-                <div>
-                  <input
-                    type="radio"
-                    id="portfolio-radio"
-                    value="portfolio"
-                    onChange={onRadioChange}
-                    checked={typeOfDocument === "portfolio"}
-                  />
-                  <label htmlFor="portfolio-radio" className="yes-radio-input">
-                    Portfolio
-                  </label>
-                </div>
-              </div>
+              <select onChange={onSelectChange}>
+                <option value="portfolio">Portfolio</option>
+                <option value="resume">Resume</option>
+                <option value="coverLetter">Cover Letter</option>
+              </select>
             </div>
             <div className="form-input-data-full-width">
               <label htmlFor="title">Title:</label>

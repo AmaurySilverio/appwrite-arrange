@@ -105,7 +105,7 @@ const CompanyForm = ({
           </div>
           <div className="radio-btns">
             <label htmlFor="company-apply">Have you applied?</label>
-            <div className="radio-btns-input">
+            <div>
               <input
                 type="radio"
                 id="yes-apply-radio"

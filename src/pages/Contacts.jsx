@@ -38,7 +38,14 @@ const Contacts = () => {
 
   const { user } = useAuth();
 
+  const dateTimeLocalNow = new Date(
+    new Date().getTime() - new Date().getTimezoneOffset() * 60_000
+  )
+    .toISOString()
+    .slice(0, 10);
+
   useEffect(() => {
+    setChat(dateTimeLocalNow);
     const user$id = user.$id;
     contactService
       .getAll(user$id)
@@ -102,6 +109,7 @@ const Contacts = () => {
       setLocation("");
       setEmail("");
       setPhone("");
+      setChat(dateTimeLocalNow);
       setLinkedIn("");
       setTwitter("");
       setGithub("");
@@ -121,6 +129,7 @@ const Contacts = () => {
         setLocation("");
         setEmail("");
         setPhone("");
+        setChat(dateTimeLocalNow);
         setLinkedIn("");
         setTwitter("");
         setGithub("");

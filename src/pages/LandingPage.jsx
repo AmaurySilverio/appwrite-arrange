@@ -36,9 +36,35 @@ const LandingPage = () => {
               </Link>
             </div>
           </div>
+          <div class="timeline">
+            <div class="container left">
+              <div class="content">
+                <p>
+                  Keep track of all your applications - No more juggling 15
+                  tabs.
+                </p>
+              </div>
+            </div>
+            <div class="container right">
+              <div class="content">
+                <p>
+                  Save your Resumes, Cover Letters and Portfolios in one
+                  convenient place.
+                </p>
+              </div>
+            </div>
+            <div class="container left">
+              <div class="content">
+                <p>
+                  Keep yourself focused and organized with our Pomodoro Timer
+                  and To-do list.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 };

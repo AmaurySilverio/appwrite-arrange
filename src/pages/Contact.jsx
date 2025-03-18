@@ -2,33 +2,54 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Button from "../components/Button";
 import Notification from "../components/Notification";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const [modal, setModal] = useState(false);
   const [messageSent, setMessageSent] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    console.log("hello");
-    setName("");
-    setEmail("");
-    setMessage("");
 
-    setModal(true);
-    setMessageSent("We will get back to you soon.");
-    setTimeout(() => {
-      setModal(false);
-      setMessageSent("");
-    }, 5000);
+  useEffect(() => emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY), []);
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          name: name,
+          email: email,
+          title: title,
+          message: message,
+        }
+      );
+      setModal(true);
+      setMessageSent("We will get back to you soon.");
+      setTimeout(() => {
+        setModal(false);
+        setMessageSent("");
+      }, 5000);
+      setName("");
+      setEmail("");
+      setTitle("");
+      setMessage("");
+    } catch (error) {
+      console.log(error);
+    }
   };
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+  };
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
   };
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
@@ -38,7 +59,7 @@ const Contact = () => {
       <Navbar />
       <main className="reach-out-container">
         <section>
-          <h2>Reach Out</h2>
+          <h1>Reach Out</h1>
           <p>
             I would love to hear about your experience on [arr]ange. Please fill
             out the form below or email me at{" "}
@@ -65,6 +86,17 @@ const Contact = () => {
                 required
                 onChange={handleEmailChange}
                 value={email}
+              />
+            </div>
+            <div className="reach-out-form-width">
+              <label htmlFor="title">Title:</label>
+              <input
+                type="text"
+                name="title"
+                placeholder="This feature would be great for [arr]ange!"
+                required
+                onChange={handleTitleChange}
+                value={title}
               />
             </div>
             <div className="reach-out-form-width">

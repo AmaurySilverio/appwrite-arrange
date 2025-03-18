@@ -3,11 +3,11 @@ import React from "react";
 const WelcomeMessage = () => {
   return (
     <>
-      <h2>Welcome to [arr]ange!</h2>
+      <h1>Welcome to [arr]ange!</h1>
       <p>
         I hope this platform becomes your go-to tool for securing a job. Use it
-        in whatever way works best for you—but here’s the approach I’ve found to
-        be the most effective:
+        in whatever way works best for you. Here’s the approach I’ve found to be
+        the most effective:
       </p>
       <ol type="1">
         <li>

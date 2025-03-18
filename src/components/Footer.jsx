@@ -4,11 +4,11 @@ import { Link, useLocation } from "react-router-dom";
 const Footer = () => {
   const [locationStyling, setLocationStyling] = useState("footer-wrapper");
 
-  useEffect(() => {
-    if (location.pathname === "/") {
-      setLocationStyling("landing-page-footer-wrapper");
-    }
-  }, [location.pathname]);
+  // useEffect(() => {
+  //   if (location.pathname === "/") {
+  //     setLocationStyling("landing-page-footer-wrapper");
+  //   }
+  // }, [location.pathname]);
 
   return (
     <>

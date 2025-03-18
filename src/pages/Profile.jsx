@@ -17,7 +17,7 @@ const Profile = () => {
   const [documents, setDocuments] = useState([]);
   const [document, setDocument] = useState("");
   const [title, setTitle] = useState("");
-  const [typeOfDocument, setTypeOfDocument] = useState("resume");
+  const [typeOfDocument, setTypeOfDocument] = useState("");
   const [selectedDocuments, setSelectedDocuments] = useState([]);
 
   const { user } = useAuth();
@@ -48,8 +48,8 @@ const Profile = () => {
   const handleTitleInputChange = (e) => {
     setTitle(e.target.value);
   };
-  const handleRadioChange = (event) => {
-    setTypeOfDocument(event.target.value);
+  const handleSelectChange = (e) => {
+    setTypeOfDocument(e.target.value);
   };
 
   const documentsToShow = [...documents];
@@ -88,7 +88,7 @@ const Profile = () => {
       }, 5000);
       setDocument("");
       setTitle("");
-      setTypeOfDocument("resume");
+      setTypeOfDocument("");
       return false;
     }
     documentService
@@ -97,7 +97,7 @@ const Profile = () => {
         setDocuments(documents.concat(returnedDocuments));
         setDocument("");
         setTitle("");
-        setTypeOfDocument("resume");
+        setTypeOfDocument("");
       })
       .catch((error) => {
         setModal(true);
@@ -173,8 +173,7 @@ const Profile = () => {
           value={document}
           onTitleChange={handleTitleInputChange}
           titleValue={title}
-          onRadioChange={handleRadioChange}
-          typeOfDocument={typeOfDocument}
+          onSelectChange={handleSelectChange}
           openDocumentFormModal={documentFormModal}
           closeDocumentFormModal={() => setDocumentFormModal(false)}
         />
