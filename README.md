@@ -1,12 +1,12 @@
 # Hitlist - [arr]ange
 
-## Keep all the companies on your hitlist organized with [arr]ange!
+## Keep all the companies, contacts and leads on your hitlist organized with [arr]ange!
 
-This is an application that lets you keep track of companies you are interested in applying for, similar to Huntr.
+Your all-in-one platform to track job applications, manage documents, and stay on top of your career goals.
 
 It is tailored to those looking for a job in tech, hence the pun in the name "[arr]ange"
 
-Companies are saved in JSON Server. Users are able to add companies, delete companies, filter companies by priority, location, or name.
+The backend is handled by appwrite.
 
 Error handling is implemented for PUT, POST and DELETE requests.
 
@@ -14,13 +14,13 @@ Error handling is implemented for PUT, POST and DELETE requests.
 
 - React.JS
 - CSS (I love styling)
+- I challenged myself to code every component myself for this project, that means no component libraries! If you see it on the app, I coded it!
 
-<img src="public/Screenshot 2025-02-24 at 4.53.00 PM.png">
+<img src="public/arrange-gif.gif">
 
 # How To Run
 
 1. Clone Repository
-2. CD into hitlist directory
-3. run: npm install
-4. run: npm run dev
-5. in a separate terminal run: npm run server (starts JSON server)
+2. CD into root folder
+3. Run: npm install
+4. This is the step where you would run npm run dev and start the application (which you still can!), but you do not have access to the enviroment variables needed to run appwrite locally. So while you can still run it, none of the create, read, update, or delete capabilities will work while running the application locally.

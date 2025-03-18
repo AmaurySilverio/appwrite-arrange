@@ -22,18 +22,8 @@ const AboutUs = () => {
             </a>
             .
           </p>
-          The hackathon featured several categories:
-          <ul>
-            <li>Open Submission</li>
-            <li>Useless but Hilarious</li>
-            <li>Meme & Pop Culture</li>
-            <li>Survival</li>
-            <li>JS Only</li>
-            <li>Helpful for 100Devs</li>
-            <li>Helpful for Others</li>
-          </ul>
           <p>
-            I set out to create something useful for the 100Devs community—a
+            I set out to create something useful for the 100Devs community — a
             tool to make the daunting job search process a little less
             overwhelming. That’s how [arr]ange, a simple and effective job
             application tracker, was born.
@@ -41,8 +31,8 @@ const AboutUs = () => {
           <p>
             While originally designed for 100Devs, my hope is that [arr]ange
             helps anyone who needs it. If you’re currently on the hunt, I hope
-            this tool makes the process smoother and less stressful. Good
-            luck—I’m rooting for you!
+            this tool makes the process smoother and less stressful. Good luck —
+            I’m rooting for you!
           </p>
         </section>
       </main>

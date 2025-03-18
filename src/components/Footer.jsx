@@ -24,7 +24,7 @@ const Footer = () => {
               </Link>
             </ul>
           </div>
-          <span>© {new Date().getFullYear()} Arrange</span>
+          <span>© {new Date().getFullYear()} [arr]ange</span>
         </div>
       </div>
     </>
