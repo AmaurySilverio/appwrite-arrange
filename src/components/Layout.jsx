@@ -12,9 +12,6 @@ const Layout = () => {
           <PomodoroWidget />
         </PomodoroProvider>
       )}
-      {/* <PomodoroProvider>
-        <PomodoroWidget />
-      </PomodoroProvider> */}
       <Outlet />
     </div>
   );

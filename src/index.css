@@ -219,6 +219,9 @@ ul .item{
   padding-inline-start: 20px;
   margin-bottom: 0;
 }
+.to-do-list-items h4{
+  margin: 0;
+}
 .list{
   display: flex;
   flex-direction: column;
@@ -394,6 +397,7 @@ ul .item{
   border: 1px solid lightgray;
   background-color: whitesmoke;
   cursor: pointer;
+  color: black;
 }
 .btn:hover{
   border: 1px solid gray;
@@ -568,6 +572,11 @@ select:focus-visible{
   box-shadow: 0 0 0 .1rem blue;
   border: none;
 }
+/* .companies-mobile-click{
+  transform: scale(102%);
+  box-shadow: 0 0 0 .1rem blue;
+  border: none;
+} */
 .companies-container ul li:hover .hidden-icons, .contacts-container ul li:hover .hidden-icons{
   opacity: 1;
   pointer-events: all;
@@ -1099,7 +1108,7 @@ th button.btn{
   font-size: 3rem;
   text-align: center;
   margin: 0;
-  padding: 5rem 0;
+  padding: 5rem 0 3rem;
 }
 .landing-page-content{
   display: flex;
@@ -1129,6 +1138,7 @@ th button.btn{
   background-color: whitesmoke;
   cursor: pointer;
   width: 12rem;
+  font-size: 1rem;
 }
 /* The actual timeline (the vertical ruler) */
 .timeline {
@@ -1224,7 +1234,6 @@ th button.btn{
   border: 20px solid rgb(142, 228, 234);
   box-shadow: 3.8px 7.7px 7.7px hsl(0deg 0% 0% / 0.38);
 }
-/* Media queries - Responsive timeline on screens less than 600px wide */
 @media screen and (max-width: 600px) {
   .landing-page-content{
     flex-direction: column;
@@ -1232,6 +1241,9 @@ th button.btn{
   }
   .landing-page-header-container h1{
     padding: 4rem 0 3rem;
+  }
+  .landing-page-text {
+    width: 61%;
   }
   /* Place the timelime to the left */
   .timeline::after {
@@ -1283,6 +1295,7 @@ th button.btn{
 }
 .login-form-buttons button{
   width: 100%;
+  font-size: 1rem;
 }
 /* FOOTER STYLING */
 .footer-wrapper{
@@ -1365,6 +1378,18 @@ th button.btn{
 }
 /* MEDIA QUERIES */
 /* NAVBAR */
+@media (pointer:fine){
+  .companies-container ul li:hover, .contacts-container ul li:hover{
+    transform: scale(102%);
+    box-shadow: 0 0 0 .1rem blue;
+    border: none;
+  }
+  .companies-container ul li:hover .hidden-icons, .contacts-container ul li:hover .hidden-icons{
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+  }
+}
 @media screen and (min-width: 600px) {
   .hide-nav-items{
     display: none;

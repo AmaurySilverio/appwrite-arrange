@@ -43,6 +43,7 @@ const DocumentForm = ({
                 <option value="portfolio">Portfolio</option>
                 <option value="resume">Resume</option>
                 <option value="coverLetter">Cover Letter</option>
+                <option value="other">Other</option>
               </select>
             </div>
             <div className="form-input-data-full-width">

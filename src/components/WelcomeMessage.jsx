@@ -20,8 +20,8 @@ const WelcomeMessage = () => {
         </li>
         <li>
           <b>Reach Out</b> – Contact those employees through LinkedIn, X,
-          Instagram, GitHub, or email—whatever works. Make sure your message is
-          something you'd want to respond to.
+          Instagram, GitHub, or email — whatever works. Make sure your message
+          is something you'd want to respond to.
         </li>
         <li>
           <b>Track Your Network</b> – Add these contacts to your Contacts page

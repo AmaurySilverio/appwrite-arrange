@@ -18,7 +18,7 @@ const LandingPage = () => {
     <>
       <div className="landing-page-container">
         <div className="landing-page-header-container">
-          <h1>Welcome to [Arr]ange!</h1>
+          <h1>Welcome to [arr]ange!</h1>
           <div className="landing-page-content">
             <div className="landing-page-text">
               <p className="landing-page-medium-text">
@@ -36,28 +36,28 @@ const LandingPage = () => {
               </Link>
             </div>
           </div>
-          <div class="timeline">
-            <div class="container left">
-              <div class="content">
+          <div className="timeline">
+            <div className="container left">
+              <div className="content">
                 <p>
-                  Keep track of all your applications - No more juggling 15
-                  tabs.
+                  Track all your leads, applications, companies, and contacts in
+                  one place - No more juggling 15 tabs! 📊💼📂🚀
                 </p>
               </div>
             </div>
-            <div class="container right">
-              <div class="content">
+            <div className="container right">
+              <div className="content">
                 <p>
-                  Save your Resumes, Cover Letters and Portfolios in one
-                  convenient place.
+                  Save your Resumes, Cover Letters, Portfolios and other
+                  important documents in one convenient place. 📄🗃️📎🗂️
                 </p>
               </div>
             </div>
-            <div class="container left">
-              <div class="content">
+            <div className="container left">
+              <div className="content">
                 <p>
-                  Keep yourself focused and organized with our Pomodoro Timer
-                  and To-do list.
+                  Boost your focus and productivity with the perfect duo — our
+                  Pomodoro Timer and To-Do list! ⏲️✅⏳🧠
                 </p>
               </div>
             </div>

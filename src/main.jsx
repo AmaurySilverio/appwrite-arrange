@@ -13,7 +13,6 @@ import AboutUs from "./pages/AboutUs.jsx";
 import Contact from "./pages/Contact.jsx";
 import Layout from "./components/Layout.jsx";
 import AuthProvider from "./utils/AuthProvider.jsx";
-import PomodoroProvider from "./utils/PomodoroContext.jsx";
 import ProtectedRoute from "./utils/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([

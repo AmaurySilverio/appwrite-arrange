@@ -136,27 +136,31 @@ const ToDoList = () => {
         <div className="to-do-list-items">
           <h3>Today's To-Dos</h3>
           <ul className="list">
-            {toDoItems.map((item) => (
-              <li key={item.$id}>
-                <div className="item-container">
-                  <input
-                    type="checkbox"
-                    checked={item.completed}
-                    onChange={(e) => toggleCompleted(item.$id)}
-                  />
-                  <label onClick={(e) => toggleCompleted(item.$id)}>
-                    {item.title}
-                  </label>
-                </div>
-                <i
-                  className="icon-border fa-solid fa-trash"
-                  style={{ color: "#7d7d7d" }}
-                  onClick={(e) => {
-                    removeToDoItem(item.$id);
-                  }}
-                ></i>
-              </li>
-            ))}
+            {toDoItems.length < 1 ? (
+              <h4>No To-Dos Found</h4>
+            ) : (
+              toDoItems.map((item) => (
+                <li key={item.$id}>
+                  <div className="item-container">
+                    <input
+                      type="checkbox"
+                      checked={item.completed}
+                      onChange={(e) => toggleCompleted(item.$id)}
+                    />
+                    <label onClick={(e) => toggleCompleted(item.$id)}>
+                      {item.title}
+                    </label>
+                  </div>
+                  <i
+                    className="icon-border fa-solid fa-trash"
+                    style={{ color: "#7d7d7d" }}
+                    onClick={(e) => {
+                      removeToDoItem(item.$id);
+                    }}
+                  ></i>
+                </li>
+              ))
+            )}
           </ul>
         </div>
       </div>

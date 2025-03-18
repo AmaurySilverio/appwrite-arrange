@@ -10,6 +10,7 @@ const Company = ({
     <li
       className={`card ${applied}`}
       onClick={() => showCompanyDetails(company)}
+      // onTouchStart={() => showCompanyDetails(company)}
     >
       <div className="company-title-container">
         <h4>{company.name}</h4> <p>{company.position}</p>
