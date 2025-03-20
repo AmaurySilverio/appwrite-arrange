@@ -19,6 +19,9 @@ const CompanyForm = ({
   closeCompanyFormModal,
   onLinkInputChange,
   linkInputValue,
+  toggleOption,
+  selectedOptions,
+  options,
 }) => {
   const ref = useRef();
 
@@ -102,6 +105,56 @@ const CompanyForm = ({
               cols="40"
               required
             />
+          </div>
+          <div className="radio-btns">
+            <label>Points of Contact (Select all that apply)</label>
+            <div className="custom-dropdown">
+              <div className="dropdown-selection">
+                <span className="selected-options">
+                  {selectedOptions.length === 0
+                    ? "Select Contacts"
+                    : selectedOptions.map((option) => {
+                        // Directly use option.label because selectedOptions holds the entire object
+                        return (
+                          <span key={option.value}>{option.label} - </span>
+                        );
+                      })}
+                </span>
+              </div>
+              <div className="dropdown-menu">
+                {options.map((option) => (
+                  <button
+                    key={option.value}
+                    className={`dropdown-option ${
+                      selectedOptions.includes(option.value) ? "selected" : ""
+                    }`}
+                    onClick={(e) => toggleOption(e, option)}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            {/* <div>
+              {options.map((option) => (
+                <button
+                  key={option.value}
+                  onClick={(e) => toggleOption(e, option.value)}
+                  style={{
+                    backgroundColor: selectedOptions.includes(option.value)
+                      ? "lightgreen"
+                      : "lightgray",
+                    margin: "5px",
+                    padding: "10px",
+                    border: "none",
+                    cursor: "pointer",
+                  }}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div> */}
+            {/* <p>Selected options: {selectedOptions.join(", ")}</p> */}
           </div>
           <div className="radio-btns">
             <label htmlFor="company-apply">Have you applied?</label>

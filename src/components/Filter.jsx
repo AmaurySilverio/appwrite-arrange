@@ -43,26 +43,6 @@ const Filter = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [user]);
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-  //       setShowDropDown(false);
-  //     }
-  //   };
-
-  //   document.addEventListener("mousedown", handleClickOutside);
-
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   const user$id = user.$id;
-  //   documentService.getAll(user$id).then((initialDocuments) => {
-  //     setDocuments(initialDocuments);
-  //   });
-  // }, []);
 
   return (
     <div className="search-container">

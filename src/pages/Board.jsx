@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import companyService from "../services/companies";
+import contactService from "../services/contacts";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CompanyForm from "../components/CompanyForm";
@@ -30,7 +31,10 @@ function Board() {
   const [companyDetailsModal, setCompanyDetailsModal] = useState(false);
   const [createJob, setCreateJob] = useState(false);
   const [companyFormModal, setCompanyFormModal] = useState(false);
-
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [options, setOptions] = useState([]);
+  const [showAddContacts, setShowAddContacts] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { user } = useAuth();
 
   useEffect(() => {
@@ -44,6 +48,28 @@ function Board() {
         setModal(true);
         setErrorMessage(
           "There is a problem with the server. Please refresh the page"
+        );
+        setTimeout(() => {
+          setModal(false);
+          setErrorMessage("");
+        }, 5000);
+        console.log(error);
+      });
+    contactService
+      .getAll(user$id)
+      .then((initialContacts) => {
+        console.log(initialContacts);
+        setOptions(
+          initialContacts.map((contact) => ({
+            value: contact.$id,
+            label: `${contact.firstName} ${contact.lastName}`,
+          }))
+        );
+      })
+      .catch((error) => {
+        setModal(true);
+        setErrorMessage(
+          "There is a problem with the server. Please refresh the page."
         );
         setTimeout(() => {
           setModal(false);
@@ -153,8 +179,10 @@ function Board() {
       description: newDescription.trim(),
       priority: priority === "yes" ? true : false,
       applied: applied === "yes" ? true : false,
+      contacts: selectedOptions.map((opt) => opt.value),
       createdBy: user$id,
     };
+    console.log(companyObject);
     if (
       companies.find(
         (company) =>
@@ -296,6 +324,62 @@ function Board() {
   };
   const handleSetSelectedItem = (e) => setSelectedItem(e.target.value);
 
+  const toggleOption = (e, option) => {
+    e.preventDefault();
+    setSelectedOptions((prevSelected) => {
+      // If it's already selected, remove it, otherwise add it
+      if (prevSelected.includes(option)) {
+        return prevSelected.filter((o) => o.value !== option.value);
+      } else {
+        return prevSelected.concat(option);
+      }
+    });
+  };
+  const toggleShowAddContacts = () => {
+    setShowAddContacts(!showAddContacts);
+  };
+  const closeShowAddContacts = () => {
+    setShowAddContacts(false);
+  };
+  const clearSelectedOptions = () => {
+    setSelectedOptions([]);
+  };
+  const updateContacts = async ($id) => {
+    setLoading(true);
+    const company = companies.find((c) => c.$id === $id);
+    const changedCompany = {
+      ...company,
+      contacts: selectedOptions.map((opt) => opt.value),
+    };
+    const contactsObject = { contacts: changedCompany.contacts };
+    try {
+      const returnedCompany = await companyService.update($id, contactsObject);
+
+      setCompanies(companies.map((c) => (c.$id === $id ? returnedCompany : c)));
+      if (filteredCompanies.length > 0) {
+        setFilteredCompanies(
+          filteredCompanies.map((c) => (c.$id === $id ? returnedCompany : c))
+        );
+      }
+      setClickedCompany(returnedCompany);
+    } catch (error) {
+      setModal(true);
+      setErrorMessage(`'${company.name}' was already deleted from the server.`);
+      setTimeout(() => {
+        setModal(false);
+        setErrorMessage("");
+      }, 5000);
+      setCompanies(companies.filter((c) => c.$id !== $id));
+      if (filteredCompanies.length > 0) {
+        setFilteredCompanies(
+          filteredCompanies.map((c) => (c.$id === $id ? returnedCompany : c))
+        );
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -318,6 +402,9 @@ function Board() {
           onAppliedRadioChange={handleAppliedChange}
           openCompanyFormModal={companyFormModal}
           closeCompanyFormModal={() => setCompanyFormModal(false)}
+          toggleOption={toggleOption}
+          selectedOptions={selectedOptions}
+          options={options}
         />
       ) : null}
       <main className="content-container">
@@ -350,6 +437,16 @@ function Board() {
           toggleApplied={toggleApplied}
           removeCompany={removeCompany}
           company={clickedCompany}
+          toggleShowAddContacts={toggleShowAddContacts}
+          closeShowAddContacts={closeShowAddContacts}
+          showAddContacts={showAddContacts}
+          selectedOptions={selectedOptions}
+          setSelectedOptions={setSelectedOptions}
+          clearSelectedOptions={clearSelectedOptions}
+          toggleOption={toggleOption}
+          options={options}
+          updateContacts={updateContacts}
+          loading={loading}
         />
       )}
       <Notification
