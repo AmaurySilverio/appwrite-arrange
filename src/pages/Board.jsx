@@ -35,6 +35,9 @@ function Board() {
   const [options, setOptions] = useState([]);
   const [showAddContacts, setShowAddContacts] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showContactsDropdown, setShowContactsDropdown] = useState(false);
+  const [showContactsFormDropdown, setShowContactsFormDropdown] =
+    useState(false);
   const { user } = useAuth();
 
   useEffect(() => {
@@ -58,7 +61,6 @@ function Board() {
     contactService
       .getAll(user$id)
       .then((initialContacts) => {
-        console.log(initialContacts);
         setOptions(
           initialContacts.map((contact) => ({
             value: contact.$id,
@@ -182,7 +184,6 @@ function Board() {
       contacts: selectedOptions.map((opt) => opt.value),
       createdBy: user$id,
     };
-    console.log(companyObject);
     if (
       companies.find(
         (company) =>
@@ -311,8 +312,6 @@ function Board() {
     }
   };
   function filterByCompanyOrLocation(company, searchTerm) {
-    console.log(company);
-    console.log(searchTerm);
     return (
       company.name.toUpperCase().includes(searchTerm.toUpperCase().trim()) ||
       company.location.toUpperCase().includes(searchTerm.toUpperCase().trim())
@@ -324,14 +323,30 @@ function Board() {
   };
   const handleSetSelectedItem = (e) => setSelectedItem(e.target.value);
 
+  // const toggleOption = (e, option) => {
+  //   e.preventDefault();
+  //   setSelectedOptions((prevSelected) => {
+  //     // If it's already selected, remove it, otherwise add it
+  //     if (prevSelected.includes(option)) {
+  //       return prevSelected.filter((o) => o.value !== option.value);
+  //     } else {
+  //       return prevSelected.concat(option);
+  //     }
+  //   });
+  // };
   const toggleOption = (e, option) => {
     e.preventDefault();
     setSelectedOptions((prevSelected) => {
-      // If it's already selected, remove it, otherwise add it
-      if (prevSelected.includes(option)) {
-        return prevSelected.filter((o) => o.value !== option.value);
+      const isAlreadySelected = prevSelected.some(
+        (opt) => opt.value === option.value
+      );
+
+      if (isAlreadySelected) {
+        // Remove the option if already selected
+        return prevSelected.filter((opt) => opt.value !== option.value);
       } else {
-        return prevSelected.concat(option);
+        // Add the option if not already selected
+        return [...prevSelected, option];
       }
     });
   };
@@ -379,6 +394,12 @@ function Board() {
       setLoading(false);
     }
   };
+  const toggleShowContactsDropdown = () => {
+    setShowContactsDropdown(!showContactsDropdown);
+  };
+  const toggleShowContactsFormDropdown = () => {
+    setShowContactsFormDropdown(!showContactsFormDropdown);
+  };
 
   return (
     <>
@@ -405,6 +426,8 @@ function Board() {
           toggleOption={toggleOption}
           selectedOptions={selectedOptions}
           options={options}
+          showContactsFormDropdown={showContactsFormDropdown}
+          toggleShowContactsFormDropdown={toggleShowContactsFormDropdown}
         />
       ) : null}
       <main className="content-container">
@@ -447,6 +470,8 @@ function Board() {
           options={options}
           updateContacts={updateContacts}
           loading={loading}
+          toggleShowContactsDropdown={toggleShowContactsDropdown}
+          showContactsDropdown={showContactsDropdown}
         />
       )}
       <Notification

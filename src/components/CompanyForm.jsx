@@ -22,6 +22,8 @@ const CompanyForm = ({
   toggleOption,
   selectedOptions,
   options,
+  showContactsFormDropdown,
+  toggleShowContactsFormDropdown,
 }) => {
   const ref = useRef();
 
@@ -109,7 +111,10 @@ const CompanyForm = ({
           <div className="radio-btns">
             <label>Points of Contact (Select all that apply)</label>
             <div className="custom-dropdown">
-              <div className="dropdown-selection">
+              <div
+                className="dropdown-selection"
+                onClick={toggleShowContactsFormDropdown}
+              >
                 <span className="selected-options">
                   {selectedOptions.length === 0
                     ? "Select Contacts"
@@ -121,19 +126,25 @@ const CompanyForm = ({
                       })}
                 </span>
               </div>
-              <div className="dropdown-menu">
-                {options.map((option) => (
-                  <button
-                    key={option.value}
-                    className={`dropdown-option ${
-                      selectedOptions.includes(option.value) ? "selected" : ""
-                    }`}
-                    onClick={(e) => toggleOption(e, option)}
-                  >
-                    {option.label}
-                  </button>
-                ))}
-              </div>
+              {showContactsFormDropdown && (
+                <div className="dropdown-menu">
+                  {options.map((option) => (
+                    <button
+                      key={option.value}
+                      className={`dropdown-option ${
+                        selectedOptions.some(
+                          (opt) => opt.value === option.value
+                        )
+                          ? "selected"
+                          : ""
+                      }`}
+                      onClick={(e) => toggleOption(e, option)}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
             {/* <div>
               {options.map((option) => (

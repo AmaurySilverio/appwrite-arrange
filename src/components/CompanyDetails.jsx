@@ -18,6 +18,8 @@ const CompanyDetails = ({
   options,
   updateContacts,
   loading,
+  toggleShowContactsDropdown,
+  showContactsDropdown,
 }) => {
   const ref = useRef();
 
@@ -63,10 +65,14 @@ const CompanyDetails = ({
             <p className="job-description">{company.description}</p>
             {showAddContacts && (
               <div className="custom-dropdown">
-                <div className="dropdown-selection">
+                <p>Click below to Add/Remove Contacts:</p>
+                <div
+                  className="dropdown-selection"
+                  onClick={toggleShowContactsDropdown}
+                >
                   <span className="selected-options">
                     {selectedOptions.length === 0
-                      ? "Select Contacts"
+                      ? "No Contacts Selected"
                       : selectedOptions.map((option) => {
                           // Directly use option.label because selectedOptions holds the entire object
                           return (
@@ -75,53 +81,61 @@ const CompanyDetails = ({
                         })}
                   </span>
                 </div>
-                <div className="dropdown-menu">
-                  {options.map((option) => (
-                    <button
-                      key={option.value}
-                      className={`dropdown-option ${
-                        selectedOptions.includes(option.value) ? "selected" : ""
-                      }`}
-                      onClick={(e) => toggleOption(e, option)}
-                    >
-                      {option.label}
-                    </button>
-                  ))}
-                </div>
+                {showContactsDropdown && (
+                  <div className="dropdown-menu">
+                    {options.map((option) => (
+                      <button
+                        key={option.value}
+                        className={`dropdown-option ${
+                          selectedOptions.some(
+                            (opt) => opt.value === option.value
+                          )
+                            ? "selected"
+                            : ""
+                        }`}
+                        onClick={(e) => toggleOption(e, option)}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
-            <div className="add-contact">
-              <p className="underline">Points of Contact:</p>
-              <i
-                className="fa-solid fa-plus icon-border cursor"
-                onClick={toggleShowAddContacts}
-              ></i>
-              {showAddContacts && (
-                <Button
-                  className="small-add-btn"
-                  onClick={() => {
-                    updateContacts(company.$id);
-                    closeShowAddContacts();
-                    clearSelectedOptions();
-                  }}
-                >
-                  Update Contacts
-                </Button>
-              )}
-            </div>
+            <div className="add-contact-container">
+              <div className="add-contact">
+                <p className="underline">Points of Contact:</p>
+                <i
+                  className="fa-solid fa-plus icon-border cursor"
+                  onClick={toggleShowAddContacts}
+                ></i>
+                {showAddContacts && (
+                  <Button
+                    className="small-add-btn"
+                    onClick={() => {
+                      updateContacts(company.$id);
+                      closeShowAddContacts();
+                      clearSelectedOptions();
+                    }}
+                  >
+                    Update Contacts
+                  </Button>
+                )}
+              </div>
 
-            <p className="points-of-contact">
-              {loading ? (
-                <span>Updating...</span> // Add your spinner/loader component here
-              ) : (
-                company.contacts.map((contact, index) => (
-                  <span key={contact.$id || index}>
-                    {contact.firstName} {contact.lastName}
-                    {index < company.contacts.length - 1 && ", "}
-                  </span>
-                ))
-              )}
-            </p>
+              <p className="points-of-contact">
+                {loading ? (
+                  <span>Updating...</span> // Add your spinner/loader component here
+                ) : (
+                  company.contacts.map((contact, index) => (
+                    <span key={contact.$id || index}>
+                      {contact.firstName} {contact.lastName}
+                      {index < company.contacts.length - 1 && ", "}
+                    </span>
+                  ))
+                )}
+              </p>
+            </div>
           </div>
           <div className="details-toggles">
             <i

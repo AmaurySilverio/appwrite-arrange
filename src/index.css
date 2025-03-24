@@ -106,7 +106,7 @@ ul .item{
 .dropdown-item{
   display: block;
   width: 100%;
-  padding: .25rem 1rem;
+  padding: .25rem 0.6rem;
   clear: both;
   font-weight: 400;
   color: #212529;
@@ -737,11 +737,14 @@ margin: 0;
 /* Custom styles for the dropdown container */
 .custom-dropdown {
   position: relative;
-  width: 300px;
+  /* width: 300px; */
   margin-bottom: 20px;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 }
-
+.custom-dropdown p{
+  font-style: italic;
+  font-weight: bold;
+}
 /* Display the selected options in the dropdown */
 .dropdown-selection {
   padding: 10px;
@@ -764,9 +767,9 @@ margin: 0;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 4px;
-  max-height: 200px;
+  max-height: 145px;
   overflow-y: auto;
-  display: none;
+  /* display: none; */
   z-index: 10;
 }
 .details-dropdown-menu {
@@ -779,16 +782,16 @@ margin: 0;
   border-radius: 4px;
   /* max-height: 200px; */
   overflow-y: auto;
-  display: none;
+  /* display: none; */
   z-index: 10;
   bottom: 42px;
   max-height: 175px;
 }
 
 /* Show the dropdown menu when it's clicked */
-.custom-dropdown:hover .dropdown-menu, .custom-dropdown:hover .details-dropdown-menu {
+/* .custom-dropdown:hover .dropdown-menu, .custom-dropdown:hover .details-dropdown-menu {
   display: block;
-}
+} */
 
 .dropdown-option {
   width: 100%;
@@ -802,12 +805,13 @@ margin: 0;
 
 /* Hover effect for the options */
 .dropdown-option:hover {
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
+  background: rgb(229,233,236);
 }
 
 /* Highlight the selected options */
 .dropdown-option.selected {
-  background-color: #d9f7d4;
+  background-color: rgba(103, 188, 240, 0.7);
 }
 
 /* Custom selected options label */
@@ -1570,6 +1574,23 @@ th,td{
 .company-details-dialog{
   min-width: 0;
 }
+}
+/* CONTACTS DROPDOWN */
+@media screen and (max-width:430px) {
+  .custom-dropdown{
+    width: 100%;
+  }
+}
+@media screen and (max-width: 341px) {
+  .add-contact{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .add-contact-container{
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
 }
 /* FILTER COMPONENT */
 @media screen and (max-width: 756px) {
