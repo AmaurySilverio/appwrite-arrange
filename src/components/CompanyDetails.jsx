@@ -149,9 +149,9 @@ const CompanyDetails = ({
               onClick={(e) => {
                 e.stopPropagation();
               }}
-              className="icon-border"
+              className="icon-border lightIconColor"
             >
-              <i className="fa-solid fa-link" style={{ color: "#7d7d7d" }}></i>
+              <i className="fa-solid fa-link"></i>
             </a>
             {/* <i
               className="icon-border fa-solid fa-pen-to-square"
@@ -159,8 +159,7 @@ const CompanyDetails = ({
               onClick={handleEdit}
             ></i> */}
             <i
-              className={`icon-border applied ${checkOr}`}
-              style={{ color: "#7d7d7d" }}
+              className={`icon-border applied lightIconColor ${checkOr}`}
               onClick={() => toggleApplied(company.$id)}
             >
               <div className="applied-hover">

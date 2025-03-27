@@ -31,13 +31,12 @@ const Company = ({
             onClick={(e) => {
               e.stopPropagation();
             }}
-            className="icon-border"
+            className="icon-border lightIconColor"
           >
-            <i className="fa-solid fa-link" style={{ color: "#7d7d7d" }}></i>
+            <i className="fa-solid fa-link"></i>
           </a>
           <i
-            className="icon-border fa-solid fa-trash"
-            style={{ color: "#7d7d7d" }}
+            className="icon-border fa-solid fa-trash lightIconColor"
             onClick={(e) => {
               removeCompany(company.$id);
               e.stopPropagation();

@@ -19,11 +19,14 @@ const Profile = () => {
   const [title, setTitle] = useState("");
   const [typeOfDocument, setTypeOfDocument] = useState("");
   const [selectedDocuments, setSelectedDocuments] = useState([]);
+  const [name, setName] = useState("");
 
   const { user } = useAuth();
 
   useEffect(() => {
     const user$id = user.$id;
+    let firstName = user.name.split(" ")[0];
+    setName(firstName);
     documentService
       .getAll(user$id)
       .then((initialDocuments) => {
@@ -152,9 +155,11 @@ const Profile = () => {
         <div className="profile-header-container">
           <h1 className="profile-header-text">Profile</h1>
           <p>
-            Store and organize all your job-specific resumes, cover letters, and
-            portfolios in one place. Easily upload your Google Docs links and
-            manage them with ease — view, upload, or delete them below.
+            Hello, <span style={{ color: "#3cb228" }}>{name}</span>! Welcome to
+            your profile. Store and organize all your job-specific resumes,
+            cover letters, portfolios and documents in one place. Easily upload
+            your Google Docs links and manage them with ease — view, upload, or
+            delete them below.
           </p>
         </div>
         <DocumentsField

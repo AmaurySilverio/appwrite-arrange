@@ -26,8 +26,7 @@ const Contact = ({
           ></i>
           <div className="hidden-icons">
             <i
-              className="icon-border fa-solid fa-trash"
-              style={{ color: "#7d7d7d" }}
+              className="icon-border fa-solid fa-trash lightIconColor"
               onClick={(e) => {
                 removeContact(contact.$id);
                 e.stopPropagation();
@@ -39,21 +38,15 @@ const Contact = ({
       <div className="contact-info-wrapper">
         <div className="contact-info-container">
           <div className="contact-info">
-            <i
-              className="fa-solid fa-location-dot"
-              style={{ color: "#7d7d7d" }}
-            ></i>
+            <i className="fa-solid fa-location-dot lightIconColor"></i>
             <p>{contact.location}</p>
           </div>
           <div className="contact-info">
-            <i className="fa-solid fa-phone" style={{ color: "#7d7d7d" }}></i>
+            <i className="fa-solid fa-phone lightIconColor"></i>
             <p>{contact.phone}</p>
           </div>
           <div className="contact-info">
-            <i
-              className="fa-solid fa-envelope"
-              style={{ color: "#7d7d7d" }}
-            ></i>
+            <i className="fa-solid fa-envelope lightIconColor"></i>
             <p>{contact.email}</p>
           </div>
         </div>

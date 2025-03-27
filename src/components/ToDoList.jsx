@@ -34,8 +34,19 @@ const ToDoList = () => {
   const addToDo = (event) => {
     const user$id = user.$id;
     event.preventDefault();
+    const trimmedItem = newItem.trim();
+
+    if (!trimmedItem) {
+      setModal(true);
+      setErrorMessage("To Do item cannot be empty.");
+      setTimeout(() => {
+        setModal(false);
+        setErrorMessage("");
+      }, 5000);
+      return;
+    }
     const toDoObject = {
-      title: newItem.trim(),
+      title: trimmedItem,
       completed: false,
       createdBy: user$id,
     };
@@ -152,8 +163,7 @@ const ToDoList = () => {
                     </label>
                   </div>
                   <i
-                    className="icon-border fa-solid fa-trash"
-                    style={{ color: "#7d7d7d" }}
+                    className="icon-border fa-solid fa-trash lightIconColor"
                     onClick={(e) => {
                       removeToDoItem(item.$id);
                     }}

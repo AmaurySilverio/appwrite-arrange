@@ -111,7 +111,9 @@ const Contact = () => {
                 value={message}
               />
             </div>
-            <Button>Send Message</Button>
+            <Button className={"form-btn"} type={"submit"}>
+              Send Message
+            </Button>
           </form>
         </section>
       </main>
