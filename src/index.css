@@ -42,8 +42,11 @@
       .dropdown-item{
         color: #212529;
       }
+      .dropdown-item .item:hover{
+        background: rgb(229,233,236);
+      }
     }
-    ul .item:hover{
+    ul .item:hover {
       background: var(--dark-mode-primary-navbar-color)
     }
     .login-container, .sign-up-container{
